@@ -136,7 +136,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = new Set(CARRY.concat(['data.js']).concat(NEW_PAGES)).size;
+  const total = new Set(CARRY.concat(['data.js', 'index.html']).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
