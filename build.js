@@ -96,17 +96,36 @@ function writeOut(rel, buf) {
   let index = live['index.html'].toString('utf8');
   const NAV_ANCHOR = '<a href="/real-estate.html">Real Estate</a>';
   must(index, NAV_ANCHOR, 'index nav Real Estate link');
-  const navHas = index.includes('href="/itineraries.html"') || index.includes('href="/events.html"');
-  if (navHas) {
-    console.log('index nav already links the new pages - leaving nav untouched');
-  } else {
-    index = index.replace(
-      NAV_ANCHOR,
-      '<a href="/itineraries.html">Plan a Day</a><a href="/events.html">What\'s On</a>' + NAV_ANCHOR
-    );
-    console.log('index nav patched');
+
+  // Remove duplicate nav entries left by earlier deploys, keep exactly one of each.
+  for (const [href, label] of [['/itineraries.html', 'Plan a Day'], ['/events.html', "What's On"]]) {
+    const tag = `<a href="${href}">${label}</a>`;
+    const n = index.split(tag).length - 1;
+    console.log(`nav "${label}": found ${n}`);
+    if (n > 1) {
+      let first = true;
+      index = index.split(tag).reduce((acc, part, i, arr) => {
+        if (i === arr.length - 1) return acc + part;
+        if (first) { first = false; return acc + part + tag; }
+        return acc + part;
+      }, '');
+      console.log(`nav "${label}": removed ${n - 1} duplicate(s)`);
+    } else if (n === 0) {
+      index = index.replace(NAV_ANCHOR, tag + NAV_ANCHOR);
+      console.log(`nav "${label}": added`);
+    }
   }
-  live['index.html'] = Buffer.from(index, 'utf8');
+
+  // Lighten the hero scrim so the headline photo reads as daylight, not dusk.
+  const heroRe = /(\.hero\s*\{[^}]*?linear-gradient\()rgba\(46,16,12,\.\d+\),\s*rgba\(46,16,12,\.\d+\)/;
+  const heroHits = (index.match(new RegExp(heroRe.source, 'g')) || []).length;
+  console.log(`hero scrim declarations found: ${heroHits}`);
+  if (heroHits === 1) {
+    index = index.replace(heroRe, '$1rgba(46,16,12,.28),rgba(46,16,12,.5)');
+    console.log('hero scrim lightened to .28/.50');
+  } else {
+    console.log('hero scrim left untouched (expected exactly 1 match)');
+  }
 
   // 3. Patch sitemap.xml.
   let sitemap = live['sitemap.xml'].toString('utf8');
