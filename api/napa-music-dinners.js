@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
     const m = text.match(/\{[\s\S]*\}/);
     if (!m) return res.status(502).json({ error: 'no_json' });
     let parsed;
-    try { parsed = JSON.parse(m[0]); } catch { return res.status(502).json({ error: 'bad_json' }); }
+    try { parsed = JSON.parse(m[0]); } catch (e) { console.error('BAD_JSON_RAW_TEXT', text.slice(0,1500)); return res.status(502).json({ error: 'bad_json', raw: text.slice(0,800) }); }
 
     const clip = (v, n) => String(v || '').slice(0, n);
     const music = (Array.isArray(parsed.music) ? parsed.music : []).slice(0, 8).map(it => ({
