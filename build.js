@@ -20,7 +20,6 @@ function must(haystack, find, label) {
 
 // Files carried through from live production. Anything 404ing aborts the build.
 const CARRY = [
-  'index.html',
   'site.css',
   'article.css',
   'logo.svg',
@@ -92,51 +91,11 @@ function writeOut(rel, buf) {
     console.log(`fetched ${rel} (${live[rel].length} B)`);
   }
 
-  // 2. Patch index.html — add the two new nav entries beside the existing Guides link.
-  let index = live['index.html'].toString('utf8');
-  const NAV_ANCHOR = '<a href="/real-estate.html">Real Estate</a>';
-  must(index, NAV_ANCHOR, 'index nav Real Estate link');
-
-  // Remove duplicate nav entries left by earlier deploys, keep exactly one of each.
-  for (const [href, label] of [['/itineraries.html', 'Plan a Day'], ['/events.html', "What's On"]]) {
-    const tag = `<a href="${href}">${label}</a>`;
-    const n = index.split(tag).length - 1;
-    console.log(`nav "${label}": found ${n}`);
-    if (n > 1) {
-      let first = true;
-      index = index.split(tag).reduce((acc, part, i, arr) => {
-        if (i === arr.length - 1) return acc + part;
-        if (first) { first = false; return acc + part + tag; }
-        return acc + part;
-      }, '');
-      console.log(`nav "${label}": removed ${n - 1} duplicate(s)`);
-    } else if (n === 0) {
-      index = index.replace(NAV_ANCHOR, tag + NAV_ANCHOR);
-      console.log(`nav "${label}": added`);
-    }
-  }
-
-  // Lighten the three image scrims so the photography reads as daylight.
-  const SCRIMS = [
-    ['rgba(46,20,12,.42),rgba(46,20,12,.30) 45%,rgba(46,20,12,.66)',
-     'rgba(46,20,12,.30),rgba(46,20,12,.16) 45%,rgba(46,20,12,.52)', 'hero'],
-    ['rgba(46,16,12,.62),rgba(46,16,12,.62)',
-     'rgba(46,16,12,.44),rgba(46,16,12,.44)', 'mid band'],
-    ['rgba(46,16,12,.78),rgba(46,16,12,.78)',
-     'rgba(46,16,12,.56),rgba(46,16,12,.56)', 'crush band']
-  ];
-  for (const [from, to, label] of SCRIMS) {
-    const n = index.split(from).length - 1;
-    if (n === 1) { index = index.replace(from, to); console.log(`scrim ${label}: lightened`); }
-    else { console.log(`scrim ${label}: ${n} matches - left untouched`); }
-  }
-
-  // Serve the hero photo at a sharper width.
-  const HERO_IMG = ['photo-1571113606406-f3ca1c36e7e7?q=80&w=2000', 'photo-1571113606406-f3ca1c36e7e7?q=88&w=2600'];
-  if (index.split(HERO_IMG[0]).length - 1 === 1) {
-    index = index.replace(HERO_IMG[0], HERO_IMG[1]);
-    console.log('hero image: raised to q88/w2600');
-  }
+  // index.html is a pinned source file, not a live fetch — this is what stopped
+  // the earlier bug where each deploy patched the previous deploy's output.
+  if (!fs.existsSync('source/index.html')) die('missing source/index.html');
+  live['index.html'] = fs.readFileSync('source/index.html');
+  console.log(`loaded index.html from source/ (${live['index.html'].length} B)`);
 
   // 3. Patch sitemap.xml.
   let sitemap = live['sitemap.xml'].toString('utf8');
