@@ -36,13 +36,13 @@ module.exports = async (req, res) => {
       })
     });
     const rawBody = await r.text();
-    if (!r.ok) { console.error('ANTHROPIC_UPSTREAM_ERROR', r.status, rawBody.slice(0,500)); return res.status(502).json({ error: 'upstream', status: r.status, detail: rawBody.slice(0,300) }); }
+    if (!r.ok) return res.status(502).json({ error: 'upstream' });
     const data = JSON.parse(rawBody);
     const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
     const m = text.match(/\{[\s\S]*\}/);
     if (!m) return res.status(502).json({ error: 'no_json' });
     let parsed;
-    try { parsed = JSON.parse(m[0]); } catch (e) { console.error('BAD_JSON_RAW_TEXT', text.slice(0,1500)); return res.status(502).json({ error: 'bad_json', raw: text.slice(0,800) }); }
+    try { parsed = JSON.parse(m[0]); } catch { return res.status(502).json({ error: 'bad_json' }); }
 
     const clip = (v, n) => String(v || '').slice(0, n);
     const music = (Array.isArray(parsed.music) ? parsed.music : []).slice(0, 8).map(it => ({
@@ -66,7 +66,6 @@ module.exports = async (req, res) => {
     if (!music.length && !dinners.length) return res.status(502).json({ error: 'empty' });
     return res.status(200).json({ updated: clip(parsed.updated, 40), music, dinners });
   } catch (e) {
-    console.error('NAPA_MUSIC_DINNERS_EXCEPTION', e && e.stack || e);
-    return res.status(500).json({ error: 'server', message: String(e && e.message || e) });
+    return res.status(500).json({ error: 'server' });
   }
 };
