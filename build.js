@@ -106,20 +106,27 @@ function writeOut(rel, buf) {
   let sitemap = live['sitemap.xml'].toString('utf8');
   must(sitemap, '</urlset>', 'sitemap closing tag');
   const today = new Date().toISOString().slice(0, 10);
-  for (const [f] of SITEMAP_ADD) {
-    if (sitemap.includes(`/${f}<`)) die(`sitemap already contains ${f}`);
+  const addRows = SITEMAP_ADD.filter(([f]) => {
+    if (sitemap.includes(`/${f}<`)) { console.log(`sitemap already lists ${f} - skipping`); return false; }
+    return true;
+  });
+  if (addRows.length) {
+    const rows = addRows.map(([f, freq, pri]) =>
+      `  <url><loc>https://www.napawino.com/${f}</loc><lastmod>${today}</lastmod>` +
+      `<changefreq>${freq}</changefreq><priority>${pri}</priority></url>`
+    ).join('\n');
+    sitemap = sitemap.replace('</urlset>', rows + '\n</urlset>');
   }
-  const rows = SITEMAP_ADD.map(([f, freq, pri]) =>
-    `  <url><loc>https://www.napawino.com/${f}</loc><lastmod>${today}</lastmod>` +
-    `<changefreq>${freq}</changefreq><priority>${pri}</priority></url>`
-  ).join('\n');
-  sitemap = sitemap.replace('</urlset>', rows + '\n</urlset>');
   live['sitemap.xml'] = Buffer.from(sitemap, 'utf8');
 
   // 4. Patch llms.txt.
   let llms = live['llms.txt'].toString('utf8');
   must(llms, '## Facts worth citing', 'llms facts heading');
-  llms = llms.replace('## Facts worth citing', LLMS_ADD + '\n\n## Facts worth citing');
+  const llmsLines = LLMS_ADD.split('\n').filter(l => {
+    const m = l.match(/https:\/\/www\.napawino\.com\/([a-z0-9-]+\.html)/);
+    return !(m && llms.includes('/' + m[1] + ')'));
+  });
+  if (llmsLines.length) llms = llms.replace('## Facts worth citing', llmsLines.join('\n') + '\n\n## Facts worth citing');
   live['llms.txt'] = Buffer.from(llms, 'utf8');
 
   // 5. Write everything out.
@@ -134,7 +141,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = CARRY.length + 1 + NEW_PAGES.length;
+  const total = new Set(CARRY.concat(['data.js']).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
