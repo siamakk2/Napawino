@@ -35,8 +35,9 @@ module.exports = async (req, res) => {
         messages: [{ role: 'user', content: 'Search Napa Music Hall, Uptown Theatre Napa, and current Napa Valley harvest/winemaker dinners, then return the JSON digest.' }]
       })
     });
-    const data = await r.json();
-    if (!r.ok) { const errBody = await r.text(); console.error('ANTHROPIC_UPSTREAM_ERROR', r.status, errBody.slice(0,500)); return res.status(502).json({ error: 'upstream', status: r.status, detail: errBody.slice(0,300) }); }
+    const rawBody = await r.text();
+    if (!r.ok) { console.error('ANTHROPIC_UPSTREAM_ERROR', r.status, rawBody.slice(0,500)); return res.status(502).json({ error: 'upstream', status: r.status, detail: rawBody.slice(0,300) }); }
+    const data = JSON.parse(rawBody);
     const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
     const m = text.match(/\{[\s\S]*\}/);
     if (!m) return res.status(502).json({ error: 'no_json' });
