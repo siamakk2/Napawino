@@ -116,15 +116,26 @@ function writeOut(rel, buf) {
     }
   }
 
-  // Lighten the hero scrim so the headline photo reads as daylight, not dusk.
-  const heroRe = /(\.hero\s*\{[^}]*?linear-gradient\()rgba\(46,16,12,\.\d+\),\s*rgba\(46,16,12,\.\d+\)/;
-  const heroHits = (index.match(new RegExp(heroRe.source, 'g')) || []).length;
-  console.log(`hero scrim declarations found: ${heroHits}`);
-  if (heroHits === 1) {
-    index = index.replace(heroRe, '$1rgba(46,16,12,.28),rgba(46,16,12,.5)');
-    console.log('hero scrim lightened to .28/.50');
-  } else {
-    console.log('hero scrim left untouched (expected exactly 1 match)');
+  // Lighten the three image scrims so the photography reads as daylight.
+  const SCRIMS = [
+    ['rgba(46,20,12,.42),rgba(46,20,12,.30) 45%,rgba(46,20,12,.66)',
+     'rgba(46,20,12,.30),rgba(46,20,12,.16) 45%,rgba(46,20,12,.52)', 'hero'],
+    ['rgba(46,16,12,.62),rgba(46,16,12,.62)',
+     'rgba(46,16,12,.44),rgba(46,16,12,.44)', 'mid band'],
+    ['rgba(46,16,12,.78),rgba(46,16,12,.78)',
+     'rgba(46,16,12,.56),rgba(46,16,12,.56)', 'crush band']
+  ];
+  for (const [from, to, label] of SCRIMS) {
+    const n = index.split(from).length - 1;
+    if (n === 1) { index = index.replace(from, to); console.log(`scrim ${label}: lightened`); }
+    else { console.log(`scrim ${label}: ${n} matches - left untouched`); }
+  }
+
+  // Serve the hero photo at a sharper width.
+  const HERO_IMG = ['photo-1571113606406-f3ca1c36e7e7?q=80&w=2000', 'photo-1571113606406-f3ca1c36e7e7?q=88&w=2600'];
+  if (index.split(HERO_IMG[0]).length - 1 === 1) {
+    index = index.replace(HERO_IMG[0], HERO_IMG[1]);
+    console.log('hero image: raised to q88/w2600');
   }
 
   // 3. Patch sitemap.xml.
