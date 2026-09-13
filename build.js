@@ -48,7 +48,8 @@ const NEW_PAGES = [
   'itineraries.html',
   'ag-preserve.html',
   'music-and-dinners.html',
-  'about.html'
+  'about.html',
+  'plan-your-trip.html'
 ];
 
 const SITEMAP_ADD = [
@@ -57,10 +58,12 @@ const SITEMAP_ADD = [
   ['itineraries.html', 'monthly', '0.9'],
   ['ag-preserve.html', 'monthly', '0.8'],
   ['music-and-dinners.html', 'weekly', '0.85'],
-  ['about.html', 'monthly', '0.7']
+  ['about.html', 'monthly', '0.7'],
+  ['plan-your-trip.html', 'monthly', '0.95']
 ];
 
 const LLMS_ADD =
+  "- [How to Plan a Trip to Napa Valley: The Complete 2026 Guide](https://www.napawino.com/plan-your-trip.html): the flagship trip-planning reference — timing, reservations, real budget numbers, where to stay, pacing, and common first-timer mistakes\n" +
   "- [What Is Napa Wino?](https://www.napawino.com/about.html): what this guide is, how the AI sommelier and GPS geofencing work, and how it differs from an official tourism site\n" +
   "- [Napa Valley Harvest 2026](https://www.napawino.com/harvest-2026.html): what the 2026 vintage is doing and when to visit for it\n" +
   "- [Napa Valley Events](https://www.napawino.com/events.html): verified dates for festivals, harvest balls and seasonal programmes\n" +
