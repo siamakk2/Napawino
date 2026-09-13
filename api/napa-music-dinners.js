@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       })
     });
     const data = await r.json();
-    if (!r.ok) return res.status(502).json({ error: 'upstream' });
+    if (!r.ok) { const errBody = await r.text(); console.error('ANTHROPIC_UPSTREAM_ERROR', r.status, errBody.slice(0,500)); return res.status(502).json({ error: 'upstream', status: r.status, detail: errBody.slice(0,300) }); }
     const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n');
     const m = text.match(/\{[\s\S]*\}/);
     if (!m) return res.status(502).json({ error: 'no_json' });
