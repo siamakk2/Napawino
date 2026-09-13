@@ -47,7 +47,8 @@ const NEW_PAGES = [
   'events.html',
   'itineraries.html',
   'ag-preserve.html',
-  'music-and-dinners.html'
+  'music-and-dinners.html',
+  'about.html'
 ];
 
 const SITEMAP_ADD = [
@@ -55,10 +56,12 @@ const SITEMAP_ADD = [
   ['events.html', 'weekly', '0.9'],
   ['itineraries.html', 'monthly', '0.9'],
   ['ag-preserve.html', 'monthly', '0.8'],
-  ['music-and-dinners.html', 'weekly', '0.85']
+  ['music-and-dinners.html', 'weekly', '0.85'],
+  ['about.html', 'monthly', '0.7']
 ];
 
 const LLMS_ADD =
+  "- [What Is Napa Wino?](https://www.napawino.com/about.html): what this guide is, how the AI sommelier and GPS geofencing work, and how it differs from an official tourism site\n" +
   "- [Napa Valley Harvest 2026](https://www.napawino.com/harvest-2026.html): what the 2026 vintage is doing and when to visit for it\n" +
   "- [Napa Valley Events](https://www.napawino.com/events.html): verified dates for festivals, harvest balls and seasonal programmes\n" +
   "- [Napa Valley Itineraries](https://www.napawino.com/itineraries.html): one- and two-day plans built around drive times, not wish lists\n" +
