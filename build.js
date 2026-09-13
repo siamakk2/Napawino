@@ -20,7 +20,6 @@ function must(haystack, find, label) {
 
 // Files carried through from live production. Anything 404ing aborts the build.
 const CARRY = [
-  'site.css',
   'article.css',
   'logo.svg',
   'robots.txt',
@@ -100,6 +99,10 @@ function writeOut(rel, buf) {
   live['index.html'] = fs.readFileSync('source/index.html');
   console.log(`loaded index.html from source/ (${live['index.html'].length} B)`);
 
+  if (!fs.existsSync('source/site.css')) die('missing source/site.css');
+  live['site.css'] = fs.readFileSync('source/site.css');
+  console.log(`loaded site.css from source/ (${live['site.css'].length} B)`);
+
   // 3. Patch sitemap.xml.
   let sitemap = live['sitemap.xml'].toString('utf8');
   must(sitemap, '</urlset>', 'sitemap closing tag');
@@ -139,7 +142,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = new Set(CARRY.concat(['data.js', 'index.html']).concat(NEW_PAGES)).size;
+  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css']).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
