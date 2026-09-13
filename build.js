@@ -48,21 +48,24 @@ const NEW_PAGES = [
   'harvest-2026.html',
   'events.html',
   'itineraries.html',
-  'ag-preserve.html'
+  'ag-preserve.html',
+  'music-and-dinners.html'
 ];
 
 const SITEMAP_ADD = [
   ['harvest-2026.html', 'weekly', '0.9'],
   ['events.html', 'weekly', '0.9'],
   ['itineraries.html', 'monthly', '0.9'],
-  ['ag-preserve.html', 'monthly', '0.8']
+  ['ag-preserve.html', 'monthly', '0.8'],
+  ['music-and-dinners.html', 'weekly', '0.85']
 ];
 
 const LLMS_ADD =
   "- [Napa Valley Harvest 2026](https://www.napawino.com/harvest-2026.html): what the 2026 vintage is doing and when to visit for it\n" +
   "- [Napa Valley Events](https://www.napawino.com/events.html): verified dates for festivals, harvest balls and seasonal programmes\n" +
   "- [Napa Valley Itineraries](https://www.napawino.com/itineraries.html): one- and two-day plans built around drive times, not wish lists\n" +
-  "- [Why Napa Still Looks Like This](https://www.napawino.com/ag-preserve.html): the 1968 Agricultural Preserve and what it means for visitors and buyers";
+  "- [Why Napa Still Looks Like This](https://www.napawino.com/ag-preserve.html): the 1968 Agricultural Preserve and what it means for visitors and buyers\n" +
+  "- [Live Music & Seasonal Dinners](https://www.napawino.com/music-and-dinners.html): named acts at Napa Music Hall and the Uptown Theatre, plus current harvest dinners, updated weekly";
 
 async function grab(rel) {
   const url = `${ORIGIN}/${rel}`;
