@@ -12,6 +12,22 @@
 <link rel="stylesheet" href="/article.css">
 <style>.banner{background-image:linear-gradient(rgba(46,16,12,.46),rgba(46,16,12,.66)),url('https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=85&w=2400&auto=format&fit=crop')}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why Napa Valley Still Looks Like This","description":"In 1968 Napa County became the first place in America to zone farmland as its highest use. The vote was 4–0, it was deeply unpopular, and it is the reason the valley is not Santa Clara.","author":{"@type":"Organization","name":"Napa Wino"},"publisher":{"@type":"Organization","name":"Napa Wino","logo":{"@type":"ImageObject","url":"https://www.napawino.com/logo.svg"}},"datePublished":"2026-09-13","mainEntityOfPage":"https://www.napawino.com/ag-preserve.html"}</script>
+<style>
+.phototiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 26px}
+.phototiles a{display:block;position:relative;height:190px;border-radius:3px;overflow:hidden;
+  background-size:cover;background-position:center;text-decoration:none}
+.phototiles a::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(20,8,6,.72),rgba(20,8,6,0) 55%)}
+.phototiles a span{position:absolute;left:11px;right:11px;bottom:10px;z-index:1;
+  color:#FFF6E8;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:500;
+  text-shadow:0 1px 6px rgba(0,0,0,.5)}
+@media(max-width:680px){.phototiles{grid-template-columns:1fr}.phototiles a{height:170px}}
+</style>
+<style>
+.banner{background-size:cover;background-position:center;animation:nwzoom 22s ease-in-out infinite alternate}
+@keyframes nwzoom{from{background-size:100%}to{background-size:112%}}
+@media(prefers-reduced-motion:reduce){.banner{animation:none}}
+</style>
 </head>
 <body>
 <header><div class="nav"><a class="brand" href="/"><img src="/logo.svg" alt="Napa Wino"><b>Napa Wino</b></a><a class="back" href="/#guides">All guides</a></div></header>
@@ -22,6 +38,11 @@
 <p class="meta">Napa Wino editors · Updated September 2026 · Editorially independent</p>
 <p>Drive north from Napa and the thing you notice isn't the wineries. It's what isn't there. No strip malls, no tract housing, no petrol station every mile. Thirty miles of farmland with towns at intervals, which is not how land near a major American city normally ends up.</p>
 <p>That's not an accident, and it isn't old-fashioned charm. It's a zoning ordinance passed by four county supervisors on a Tuesday in 1968, over furious objection.</p>
+<div class="phototiles">
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>Farmland protected under the 1968 Ag Preserve, still undeveloped today</span></a>
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>The valley floor: 30 miles of vines with almost no sprawl between towns</span></a>
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1627935563301-3ab81beb385f?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>Ridge and hillside parcels — the 40-acre minimum still applies here</span></a>
+</div>
 <h2>What they were afraid of</h2>
 <p>Santa Clara Valley. Sixty miles south, it had been one of the most productive orchard regions in America — prune, apricot, cherry — and by the mid-1960s it was being paved at speed. It's Silicon Valley now. Napa's supervisors watched it happen in real time.</p>
 <p>Napa County is close enough to San Francisco that the same was coming. Landowners in the late 1950s and early 60s could see their land values about to climb, and the way you realise that value is by subdividing.</p>

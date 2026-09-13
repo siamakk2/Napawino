@@ -12,6 +12,22 @@
 <link rel="stylesheet" href="/article.css">
 <style>.banner{background-image:linear-gradient(rgba(46,16,12,.46),rgba(46,16,12,.66)),url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=85&w=2400&auto=format&fit=crop')}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Napa Valley Itineraries That Survive Highway 29","description":"Honest day plans for Napa Valley — what actually fits, in what order, and what to cut. Built around drive times on Highway 29, not around who paid to be listed.","author":{"@type":"Organization","name":"Napa Wino"},"publisher":{"@type":"Organization","name":"Napa Wino","logo":{"@type":"ImageObject","url":"https://www.napawino.com/logo.svg"}},"datePublished":"2026-09-13","mainEntityOfPage":"https://www.napawino.com/itineraries.html"}</script>
+<style>
+.phototiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 26px}
+.phototiles a{display:block;position:relative;height:190px;border-radius:3px;overflow:hidden;
+  background-size:cover;background-position:center;text-decoration:none}
+.phototiles a::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(20,8,6,.72),rgba(20,8,6,0) 55%)}
+.phototiles a span{position:absolute;left:11px;right:11px;bottom:10px;z-index:1;
+  color:#FFF6E8;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:500;
+  text-shadow:0 1px 6px rgba(0,0,0,.5)}
+@media(max-width:680px){.phototiles{grid-template-columns:1fr}.phototiles a{height:170px}}
+</style>
+<style>
+.banner{background-size:cover;background-position:center;animation:nwzoom 22s ease-in-out infinite alternate}
+@keyframes nwzoom{from{background-size:100%}to{background-size:112%}}
+@media(prefers-reduced-motion:reduce){.banner{animation:none}}
+</style>
 </head>
 <body>
 <header><div class="nav"><a class="brand" href="/"><img src="/logo.svg" alt="Napa Wino"><b>Napa Wino</b></a><a class="back" href="/#guides">All guides</a></div></header>
@@ -22,6 +38,11 @@
 <p class="meta">Napa Wino editors · Updated September 2026 · Editorially independent</p>
 <p>Most Napa itineraries are wish lists. Five wineries, a long lunch, a spa, sunset somewhere photogenic. The valley is 30 miles long with one crowded road down the middle, and the wish list falls apart by two in the afternoon.</p>
 <p>These are built backwards from the driving. Three tastings is the ceiling. Two is often better.</p>
+<div class="phototiles">
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>Highway 29 south to north — the corridor these plans are built around</span></a>
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1596397249129-c7a8f8f5f8b2?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>Yountville's walkable main street — the easiest first-day base</span></a>
+  <a href="/#sommelier" style="background-image:url('https://images.unsplash.com/photo-1665706797114-94e06351ddf5?q=80&w=800&auto=format&fit=crop')" aria-hidden="true"><span>Ending a St. Helena–Calistoga day with a mud bath</span></a>
+</div>
 <h2>The one-day rules</h2>
 <p><strong>Three tastings, maximum.</strong> Each is 60 to 90 minutes if it's any good. Add 15 to 25 minutes of driving between stops and ten to park and find the door. Three fills a day honestly. Four means rushing the one you came for.</p>
 <p><strong>Book the appointment-only place first.</strong> It's the fixed point. Everything else bends around it.</p>
