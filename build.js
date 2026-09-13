@@ -96,10 +96,16 @@ function writeOut(rel, buf) {
   let index = live['index.html'].toString('utf8');
   const NAV_ANCHOR = '<a href="/real-estate.html">Real Estate</a>';
   must(index, NAV_ANCHOR, 'index nav Real Estate link');
-  index = index.replace(
-    NAV_ANCHOR,
-    '<a href="/itineraries.html">Plan a Day</a><a href="/events.html">What\'s On</a>' + NAV_ANCHOR
-  );
+  const navHas = index.includes('href="/itineraries.html"') || index.includes('href="/events.html"');
+  if (navHas) {
+    console.log('index nav already links the new pages - leaving nav untouched');
+  } else {
+    index = index.replace(
+      NAV_ANCHOR,
+      '<a href="/itineraries.html">Plan a Day</a><a href="/events.html">What\'s On</a>' + NAV_ANCHOR
+    );
+    console.log('index nav patched');
+  }
   live['index.html'] = Buffer.from(index, 'utf8');
 
   // 3. Patch sitemap.xml.
