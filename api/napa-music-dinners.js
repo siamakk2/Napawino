@@ -65,6 +65,7 @@ module.exports = async (req, res) => {
     if (!music.length && !dinners.length) return res.status(502).json({ error: 'empty' });
     return res.status(200).json({ updated: clip(parsed.updated, 40), music, dinners });
   } catch (e) {
-    return res.status(500).json({ error: 'server' });
+    console.error('NAPA_MUSIC_DINNERS_EXCEPTION', e && e.stack || e);
+    return res.status(500).json({ error: 'server', message: String(e && e.message || e) });
   }
 };
