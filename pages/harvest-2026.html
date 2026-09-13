@@ -69,5 +69,18 @@
 </div>
 </main>
 <footer><div class="slogan">Serious about the valley. Not too serious about ourselves.</div><a href="/">Napa Wino</a> · <a href="/#guides">All guides</a> · © 2026</footer>
+<script>
+(function(){
+function checkBg(el){
+  var cs = getComputedStyle(el).backgroundImage;
+  var m = cs.match(/url\(["']?(https:\/\/images\.unsplash\.com[^"')]+)["']?\)/);
+  if(!m) return;
+  var img = new Image();
+  img.onerror = function(){ el.classList.add('img-fallback'); };
+  img.src = m[1];
+}
+document.querySelectorAll('.banner, .phototiles a').forEach(checkBg);
+})();
+</script>
 </body>
 </html>

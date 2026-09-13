@@ -381,5 +381,20 @@ fetch('/api/napa-news').then(function(r){if(!r.ok)throw 0;return r.json()}).then
 }).catch(function(){var s=document.getElementById('newsSec');if(s)s.remove()});
 })();
 </script>
+<script>
+(function(){
+function checkBg(el){
+  var cs = getComputedStyle(el).backgroundImage;
+  var m = cs.match(/url\(["']?(https:\/\/images\.unsplash\.com[^"')]+)["']?\)/);
+  if(!m) return;
+  var img = new Image();
+  img.onerror = function(){ el.classList.add('img-fallback'); };
+  img.src = m[1];
+}
+window.addEventListener('load', function(){
+  document.querySelectorAll('.hero, .band, .safe, .gthumb, .tile, .towncard').forEach(checkBg);
+});
+})();
+</script>
 </body>
 </html>

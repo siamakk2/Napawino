@@ -202,3 +202,6 @@ body{background-image:linear-gradient(rgba(251,247,239,.93),rgba(247,239,226,.95
 .wchip{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:10px 16px;font-size:13px;color:var(--body);display:flex;align-items:center;gap:8px;text-decoration:none;flex:1;min-width:220px}
 .wchip:hover{border-color:var(--brand);color:var(--brand)}
 .wchip .wd{font-family:'Jost',sans-serif;font-weight:600;color:var(--brand);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+
+/* v6.11 — dead-image safety net */
+.img-fallback{background-image:linear-gradient(135deg,var(--brand),var(--wine))!important}

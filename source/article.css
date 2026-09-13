@@ -1,0 +1,66 @@
+:root{--wine:#5C1418;--brand:#7B2947;--cream:#FAF5EA;--sand:#F2E9D8;--paper:#FFFDF8;--line:#E4D8C0;--gold:#B0873A;--ink:#2E2622;--body:#4E443A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;color:var(--ink);line-height:1.68;background:var(--cream);background-image:linear-gradient(180deg,#FBF7EF,#F4EBDA 50%,#FBF7EF);background-attachment:fixed}
+header{position:sticky;top:0;background:rgba(250,245,234,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:40}
+.nav{max-width:860px;margin:0 auto;padding:11px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.brand img{width:27px;height:26px}
+.brand b{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--brand);font-weight:700}
+.nav a.back{font-size:11px;color:var(--brand);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:9px 13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.nav a.back:hover{background:var(--sand)}
+.banner{height:220px;background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px}
+.banner a{background:rgba(255,251,242,.94);color:var(--brand);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:11px 18px;border-radius:3px;text-decoration:none;box-shadow:0 6px 18px rgba(30,10,5,.28)}
+.banner a:hover{background:#fff}
+main{max-width:840px;margin:0 auto;padding:40px 22px 64px}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.8vw,45px);color:var(--wine);font-weight:600;line-height:1.1;margin-top:8px}
+h2{font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--wine);font-weight:600;margin-top:34px}
+h3{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--brand);font-weight:600;margin-top:22px}
+p{font-size:16px;color:var(--body);margin-top:12px}
+ul{margin:12px 0 0 20px}
+li{font-size:15.5px;color:var(--body);margin-top:7px}
+a{color:var(--brand)}
+.meta{font-size:12.5px;color:#8A7B66;margin-top:9px}
+.toc{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-top:22px}
+.toc p{font-size:13px;margin-top:6px}
+.toc a{text-decoration:none}
+.ava,.season,.town,.box{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;padding:17px 21px;margin-top:15px}
+.ava h3,.town h2{margin-top:0}
+.ava .fact{font-size:12.5px;color:#7C6C56;margin-top:6px;font-weight:500}
+.season b,.box b{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--brand);font-weight:600;display:block}
+.season .tag,.town .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7C6C56;font-weight:600;margin-top:3px;display:block}
+.season p,.town p,.box p{font-size:15.5px;margin-top:8px}
+.town .fit{font-size:14px;color:var(--wine);font-weight:500;margin-top:10px}
+.verdict{background:var(--sand);border:1px solid var(--line);border-radius:4px;padding:20px 24px;margin-top:26px}
+.verdict h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--wine);font-weight:600;margin-top:0}
+.cta{background:var(--brand);color:#FFF6E6;border-radius:4px;padding:24px;margin-top:34px;font-size:15.5px}
+.cta a{color:#F2CE87;text-decoration:none;font-weight:600}
+.cta .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.cta .btnrow a{background:#F2CE87;color:#4A1020;padding:11px 18px;border-radius:3px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.disc{font-size:11.5px;color:#8A7B66;margin-top:26px}
+.related{border-top:1px solid var(--line);margin-top:44px;padding-top:22px}
+.related a{display:block;margin-top:8px;font-size:14.5px}
+footer{text-align:center;padding:26px 22px;font-size:12.5px;color:#7C6C56;background:var(--sand);border-top:1px solid var(--line)}
+footer a{color:var(--brand);text-decoration:none}
+footer .slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--brand);margin-bottom:5px}
+
+/* v6.2 — taller article hero + faded wine-country backdrop */
+.banner{height:clamp(260px,34vw,380px)}
+body{background-image:linear-gradient(rgba(251,247,239,.94),rgba(247,239,226,.96)),url('https://images.unsplash.com/photo-1627935563301-3ab81beb385f?q=55&w=1800&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+@media(max-width:768px){body{background-attachment:scroll}}
+
+/* v6.3 — magazine hero: title over the image */
+.banner{position:relative;height:clamp(320px,38vw,420px);flex-direction:column;align-items:stretch;justify-content:flex-end;padding:0}
+.banner::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(28,10,8,.84),rgba(28,10,8,.38) 46%,rgba(28,10,8,.10) 78%,rgba(28,10,8,0))}
+.btxt{position:relative;z-index:2;max-width:840px;width:100%;margin:0 auto;padding:0 22px 26px}
+.btxt .eyebrow{color:#F2CE87;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.btxt h1{color:#FFFBF2;margin-top:7px;font-size:clamp(29px,4.6vw,46px);text-shadow:0 2px 18px rgba(20,8,5,.7)}
+.btxt .meta{color:#F0E2CC;margin-top:9px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.bcta{position:absolute;top:14px;right:16px;z-index:2}
+main{padding-top:30px}
+@media(max-width:560px){.bcta{display:none}}
+
+/* v6.11 — dead-image safety net: any background photo that fails to load
+   gets a solid on-brand gradient instead of a blank/gray hole. Applied by
+   a small script on each page; see imgFallback in page source. */
+.img-fallback{background-image:linear-gradient(135deg,var(--brand),var(--wine))!important}
