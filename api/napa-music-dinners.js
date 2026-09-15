@@ -76,7 +76,7 @@ module.exports = async (req, res) => {
     const m = text.match(/\{[\s\S]*\}/);
     if (!m) return res.status(502).json({ error: 'no_json' });
     let parsed;
-    try { parsed = JSON.parse(m[0]); } catch { return res.status(502).json({ error: 'bad_json', raw: text.slice(0,1200) }); }
+    try { parsed = JSON.parse(m[0]); } catch { return res.status(502).json({ error: 'bad_json' }); }
 
     const clip = (v, n) => String(v || '').slice(0, n);
     const music = (Array.isArray(parsed.music) ? parsed.music : []).slice(0, 8).map(it => ({
