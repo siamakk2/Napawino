@@ -70,6 +70,16 @@ header{position:sticky;top:0;z-index:60;background:rgba(250,245,234,.97);backdro
 h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px);color:var(--wine);font-weight:600;margin-top:4px;line-height:1.1}
 .lede{font-size:15px;color:var(--body);margin-top:8px;max-width:680px}
 .month{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:22px}
+.newsletter-card{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;background:var(--sand);border:1px solid var(--line);border-radius:4px;padding:26px 28px}
+.newsletter-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);margin:0 0 6px}
+.newsletter-card p{font-size:13.5px;color:#5A4A2E;max-width:420px;margin:0}
+.newsletter-card form{flex:1;min-width:280px;max-width:420px}
+.nl-row{display:flex;gap:8px}
+.nl-row input{flex:1;padding:11px 16px;border:1px solid var(--line);border-radius:999px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink)}
+.nl-consent{display:block;margin-top:10px;font-size:11.5px;color:#7C6C56;line-height:1.5}
+.nl-consent input{margin-right:6px;vertical-align:middle}
+.nl-consent a{color:#7B2947}
+.nl-msg{font-size:12.5px;color:var(--brand);margin-top:8px;min-height:1em}
 .mcard{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:4px;padding:22px;display:flex;flex-direction:column}
 .mcard .badge2{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#FFF6E6;background:var(--brand);display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;align-self:flex-start}
 .mcard h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--wine);font-weight:600;margin-top:12px;line-height:1.12}

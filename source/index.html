@@ -76,7 +76,7 @@
   </div>
   <div class="mnav" id="mnav">
     <h5>Explore</h5>
-    <a href="/#month">This month in Napa</a><a href="/#towns">Towns &amp; GPS guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/napa.html">Napa</a><a href="/yountville.html">Yountville</a><a href="/st-helena.html">St. Helena</a><a href="/calistoga.html">Calistoga</a><a href="/wineries.html">Winery directory (50+)</a><a href="/#experiences">Experiences</a>
+    <a href="/#month">This month in Napa</a><a href="/#weekendSec">This weekend in Napa</a><a href="/#towns">Towns &amp; GPS guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/napa.html">Napa</a><a href="/yountville.html">Yountville</a><a href="/st-helena.html">St. Helena</a><a href="/calistoga.html">Calistoga</a><a href="/wineries.html">Winery directory (50+)</a><a href="/#experiences">Experiences</a>
     <h5>Plan the trip</h5>
     <a href="/plan-your-trip.html">Plan Your Trip: The Complete Guide</a><a href="/first-tasting-guide.html">Your First Tasting, No Stress</a><a href="/itineraries.html">Plan a Day</a><a href="/events.html">What's On</a><a href="/music-and-dinners.html">Live Music &amp; Dinners</a><a href="/harvest-2026.html">Harvest 2026</a><a href="/articles/first-time-napa-guide.html">First Time in Napa?</a><a href="/articles/best-time-to-visit-napa.html">Best Time to Visit, Month by Month</a><a href="/articles/napa-towns-guide.html">Where to Stay: Town by Town</a><a href="/articles/3-day-napa-itinerary.html">The Perfect 3-Day Itinerary</a>
     <h5>Know the valley</h5>
@@ -176,6 +176,29 @@
   <p class="lede">Events, openings and what's actually happening — pulled from current local sources and refreshed automatically twice a day.<span id="newsUpdated" style="display:block;font-size:12px;color:#8A7B66;margin-top:6px"></span></p>
   <div class="month" id="newsGrid"></div>
   <p style="font-size:12px;color:#8A7B66;margin-top:14px">Compiled automatically by our AI news desk from current local sources. Always confirm dates, hours and tickets with the venue or organizer.</p>
+</section>
+
+<section class="wrap" id="weekendSec" style="padding-top:46px">
+  <p class="eyebrow" id="weekendEyebrow">This weekend in Napa</p>
+  <h2 class="title">What's booked this weekend</h2>
+  <p class="lede">Named acts at Napa Music Hall and the Uptown, plus harvest and winemaker dinners — only what's actually on sale for the weekend ahead.</p>
+  <div class="month" id="weekendGrid"></div>
+  <p id="weekendEmpty" style="display:none;font-size:14px;color:#5A4A38;margin-top:8px">Nothing confirmed for this weekend yet — check back midweek, or see the <a href="/events.html" style="color:#7B2947">full calendar</a>.</p>
+  <p style="font-size:12px;color:#8A7B66;margin-top:14px">Pulled automatically from venue listings; always confirm with the venue before you go.</p>
+</section>
+
+<section class="wrap" id="newsletterSec" style="padding-top:20px;padding-bottom:10px">
+  <div class="newsletter-card">
+    <div>
+      <h3>Get next weekend's picks by email</h3>
+      <p>One short email, sent before the weekend, with what's booked and what's worth driving for. No spam, no selling your email, unsubscribe anytime.</p>
+    </div>
+    <form id="nlForm" novalidate>
+      <div class="nl-row"><input type="email" id="nlEmail" placeholder="you@example.com" aria-label="Email address" required><button class="btn btn-wine" type="submit" id="nlBtn">Sign up</button></div>
+      <label class="nl-consent"><input type="checkbox" id="nlConsent" required> I'd like the weekend email from Napa Wino. I can unsubscribe anytime by emailing <a href="mailto:newsletter@napawino.com">newsletter@napawino.com</a>.</label>
+      <p class="nl-msg" id="nlMsg" aria-live="polite"></p>
+    </form>
+  </div>
 </section>
 
 <section class="sand" id="experiences" style="margin-top:52px"><div class="wrap" style="padding-top:56px;padding-bottom:56px">
@@ -327,6 +350,41 @@ fetch('/api/napa-music-dinners').then(function(r){if(!r.ok)throw 0;return r.json
 }).catch(function(){
   var el=document.getElementById('heroWhatson');
   if(el) el.innerHTML = '<a class="wchip" href="/events.html" style="justify-content:center;font-weight:600">See what\'s on this season →</a><a class="wchip" href="/music-and-dinners.html" style="justify-content:center;font-weight:600">Live music &amp; dinners →</a>';
+});
+})();
+</script>
+<script>
+(function(){
+function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML}
+var MONTHS={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+function parseEventDate(str,refYear){var m=String(str||'').match(/([A-Za-z]{3,9})\.?\s+(\d{1,2})/);if(!m)return null;var mk=m[1].slice(0,3).toLowerCase();if(!(mk in MONTHS))return null;return new Date(refYear,MONTHS[mk],parseInt(m[2],10))}
+function weekendRange(now){var day=now.getDay(),off;if(day===0)off=-2;else if(day===6)off=-1;else if(day===5)off=0;else off=5-day;var fri=new Date(now.getFullYear(),now.getMonth(),now.getDate()+off);var sun=new Date(fri.getFullYear(),fri.getMonth(),fri.getDate()+2,23,59,59);return{fri:fri,sun:sun}}
+var now=new Date(),win=weekendRange(now);
+var eb=document.getElementById('weekendEyebrow');
+if(eb)eb.textContent='This weekend in Napa · '+win.fri.toLocaleDateString('en-US',{month:'short',day:'numeric'})+'–'+win.sun.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+fetch('/api/napa-music-dinners').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+  var items=[];
+  (d.music||[]).forEach(function(m){items.push({dt:parseEventDate(m.date,now.getFullYear()),date:m.date,label:'🎵 '+m.act+(m.opener?' w/ '+m.opener:'')+' — '+m.venue+(m.room?' ('+m.room+')':''),note:m.note})});
+  (d.dinners||[]).forEach(function(x){items.push({dt:parseEventDate(x.date,now.getFullYear()),date:x.date,label:'🍽 '+x.title+' — '+x.winery+' ('+x.town+')',note:x.note})});
+  var inWindow=items.filter(function(it){return it.dt&&it.dt>=win.fri&&it.dt<=win.sun});
+  if(!inWindow.length){var ee=document.getElementById('weekendEmpty');if(ee)ee.style.display='';return}
+  var grid=document.getElementById('weekendGrid');
+  if(grid)grid.innerHTML=inWindow.map(function(it){return '<div class="mcard"><span class="badge2">'+esc(it.date)+'</span><h3 style="font-size:17px">'+esc(it.label)+'</h3><p>'+esc(it.note||'')+'</p></div>'}).join('');
+}).catch(function(){var ee=document.getElementById('weekendEmpty');if(ee)ee.style.display=''});
+var form=document.getElementById('nlForm');
+if(form)form.addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var email=document.getElementById('nlEmail').value.trim();
+  var consent=document.getElementById('nlConsent').checked;
+  var msg=document.getElementById('nlMsg');
+  var btn=document.getElementById('nlBtn');
+  if(!consent){msg.textContent='Please check the box to confirm you want the email.';return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent="That email doesn't look right — double-check it.";return}
+  btn.disabled=true;msg.textContent='Signing you up…';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,consent:consent})})
+    .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
+    .then(function(res){btn.disabled=false;if(res.ok){msg.textContent="You're on the list — look for a note before next weekend.";form.reset()}else{msg.textContent='Something went sideways — please try again.'}})
+    .catch(function(){btn.disabled=false;msg.textContent='Something went sideways — please try again.'});
 });
 })();
 </script>
