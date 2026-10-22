@@ -103,6 +103,9 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .tag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--sand);color:#75592A;padding:3px 9px;border-radius:999px;font-weight:600}
 .qp{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.town-pill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:6px 12px;border-radius:999px;background:#FBF3E4;border:1px solid var(--line);font-size:13px;color:#7B2947;font-weight:500}
+.town-pill button{border:none;background:none;color:#8A7A62;cursor:pointer;font-size:13px;line-height:1;padding:0 2px}
+.town-pill button:hover{color:#7B2947}
 .ask{display:flex;gap:8px;margin-top:12px}
 .ask input{flex:1;background:#fff;border:1px solid var(--line);color:var(--ink);padding:13px 16px;border-radius:3px;font-family:inherit;font-size:14.5px}
 .exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px;margin-top:24px}

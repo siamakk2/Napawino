@@ -126,6 +126,7 @@
     <div class="somm-body">
       <div class="thread" id="thread"><p class="display" style="font-style:italic;font-size:21px;text-align:center;color:#8A7A62;padding:18px 0" id="placeholder">“I like bold Cabernets and want a view…”</p></div>
       <div class="qp" id="quickPrompts"></div>
+      <div id="townCtx"></div>
       <div class="ask"><input id="askInput" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier"><button class="btn btn-gold" id="askBtn">Ask</button></div>
     </div>
   </div>
@@ -352,12 +353,16 @@ TAGS.forEach(t=>{const b=document.createElement('button');b.className='chip';b.t
 searchBox.addEventListener('input',renderDir);renderDir();
 const thread=document.getElementById('thread'),input=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),qp=document.getElementById('quickPrompts');
 let history=[],busy=false;
+const TOWN_NAMES={napa:'Napa',yountville:'Yountville','st-helena':'St. Helena',calistoga:'Calistoga'};
+let townCtx=null;
+(function(){const t=new URLSearchParams(location.search).get('town');const name=t&&TOWN_NAMES[t];if(!name)return;townCtx=name;const box=document.getElementById('townCtx');if(!box)return;box.innerHTML='<span class="town-pill">📍 Starting in '+esc(name)+' <button type="button" aria-label="Clear starting town">✕</button></span>';box.querySelector('button').onclick=function(){townCtx=null;box.innerHTML='';const u=new URL(location.href);u.searchParams.delete('town');history_replace(u)};function history_replace(u){try{window.history.replaceState({},'',u)}catch(e){}}})();
 QUICK.forEach(q=>{const b=document.createElement('button');b.className='chip';b.textContent=q;b.onclick=()=>send(q);qp.appendChild(b)});
 askBtn.onclick=()=>send();input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
 async function send(text){const q=(text??input.value).trim();if(!q||busy)return;busy=true;input.value='';const ph=document.getElementById('placeholder');if(ph)ph.remove();
  thread.insertAdjacentHTML('beforeend','<div class="msg-u">'+esc(q)+'</div>');
  const wait=document.createElement('p');wait.className='msg-s display';wait.style.fontStyle='italic';wait.style.color='#8A7A62';wait.textContent='Decanting a recommendation…';thread.appendChild(wait);thread.scrollTop=thread.scrollHeight;
- history.push({role:'user',content:q});
+ const sendContent=(townCtx&&history.length===0)?('Starting in '+townCtx+'. '+q):q;
+ history.push({role:'user',content:sendContent});
  try{
   const r=await fetch('/api/sommelier',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
   const res=await r.json();wait.remove();
