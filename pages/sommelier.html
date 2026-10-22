@@ -91,6 +91,10 @@
   </div>
 </section>
 
+<section class="wrap itin-section" id="itinSection" style="display:none;padding-top:8px;padding-bottom:30px">
+  <div class="itin" id="itinBox"></div>
+</section>
+
 <section class="wrap" style="padding-top:52px;padding-bottom:10px">
   <p class="eyebrow">How it works</p>
   <h2 class="title">From a sentence to a sequenced tasting day</h2>
@@ -140,7 +144,7 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
 function logoURL(u){try{const h=new URL(u).hostname;return 'https://www.google.com/s2/favicons?sz=64&domain='+h}catch(e){return null}}
 function initials(n){return (n||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()}
 function badgeHTML(w){const lu=w.url?logoURL(w.url):null;if(!lu)return '<span class="badge"><span class="mono">'+esc(initials(w.name))+'</span></span>';return '<span class="badge"><img src="'+lu+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mono" style="display:none">'+esc(initials(w.name))+'</span></span>'}
-function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
+function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.access?'<p class="meta" style="font-size:12px;color:#7C6C56;margin-top:8px">🚪 '+esc(w.access)+'<br>🐾 '+esc(w.dog)+'<br>💳 '+esc(w.price)+'</p>':'')+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
 const thread=document.getElementById('thread'),input=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),qp=document.getElementById('quickPrompts');
 let history=[],busy=false;
 const TOWN_NAMES={napa:'Napa',yountville:'Yountville','st-helena':'St. Helena',calistoga:'Calistoga'};
@@ -148,6 +152,17 @@ let townCtx=null;
 (function(){const t=new URLSearchParams(location.search).get('town');const name=t&&TOWN_NAMES[t];if(!name)return;townCtx=name;const box=document.getElementById('townCtx');if(!box)return;box.innerHTML='<span class="town-pill">📍 Starting in '+esc(name)+' <button type="button" aria-label="Clear starting town">✕</button></span>';box.querySelector('button').onclick=function(){townCtx=null;box.innerHTML='';const u=new URL(location.href);u.searchParams.delete('town');try{window.history.replaceState({},'',u)}catch(e){}}})();
 QUICK.forEach(q=>{const b=document.createElement('button');b.className='chip';b.textContent=q;b.onclick=()=>send(q);qp.appendChild(b)});
 askBtn.onclick=()=>send();input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+const ITIN_KEY='napaItinerary';
+let itinerary=[],itinTip='';
+function loadItinerary(){try{const sp=new URLSearchParams(location.search).get('stops');if(sp){itinerary=sp.split(',').map(id=>WINERIES.find(w=>w.id===id)).filter(Boolean).map(w=>({id:w.id,type:'winery'}))}else{const saved=JSON.parse(localStorage.getItem(ITIN_KEY)||'null');if(saved&&Array.isArray(saved.stops))itinerary=saved.stops;if(saved&&saved.tip)itinTip=saved.tip}}catch(e){}}
+function itemFor(stop){return stop.type==='restaurant'?RESTAURANTS.find(x=>x.id===stop.id):WINERIES.find(w=>w.id===stop.id)}
+function addToItinerary(picks,eats,tip){picks.forEach(w=>{if(!itinerary.some(s=>s.id===w.id&&s.type==='winery'))itinerary.push({id:w.id,type:'winery'})});eats.forEach(e=>{if(!itinerary.some(s=>s.id===e.id&&s.type==='restaurant'))itinerary.push({id:e.id,type:'restaurant'})});if(tip)itinTip=tip;renderItin()}
+function removeStop(id,type){itinerary=itinerary.filter(s=>!(s.id===id&&s.type===type));renderItin()}
+function itinMsgShow(t){const m=document.getElementById('itinMsg');if(m){m.textContent=t;setTimeout(()=>{if(m)m.textContent=''},4000)}}
+function saveItin(){try{localStorage.setItem(ITIN_KEY,JSON.stringify({stops:itinerary,tip:itinTip}));itinMsgShow('Saved on this device.')}catch(e){itinMsgShow('Could not save — your browser may be blocking storage.')}}
+function shareItin(){const u=new URL(location.href);u.searchParams.set('stops',itinerary.filter(s=>s.type==='winery').map(s=>s.id).join(','));const url=u.toString();if(navigator.share){navigator.share({title:'My Napa Valley day',url}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>itinMsgShow('Link copied!')).catch(()=>itinMsgShow(url))}else itinMsgShow(url)}
+function renderItin(){const box=document.getElementById('itinBox'),sec=document.getElementById('itinSection');if(!itinerary.length){sec.style.display='none';box.innerHTML='';return}sec.style.display='';let rows=itinerary.map(s=>{const it=itemFor(s);if(!it)return '';const label=s.type==='restaurant'?('🍽 <b>'+esc(it.name)+'</b> — '+esc(it.town)):('🍷 <b>'+esc(it.name)+'</b> — '+esc(it.town));return '<div class="itin-row"><span class="itin-label">'+label+'</span><button type="button" aria-label="Remove stop" data-id="'+esc(s.id)+'" data-type="'+s.type+'">✕</button></div>'}).join('');box.innerHTML='<h3>Your Napa day so far</h3><p class="itin-note">Stops in the order the sommelier suggested them. Remove anything that doesn\'t fit, then save, share or print.</p>'+rows+(itinTip?'<p class="itin-tip">🚗 '+esc(itinTip)+' <em>— an estimate from the sommelier, not live traffic.</em></p>':'')+'<div class="itin-actions"><button type="button" id="itinSave">💾 Save</button><button type="button" id="itinShare">🔗 Share link</button><button type="button" id="itinPrint">🖨️ Print</button><button type="button" id="itinClear">Clear</button></div><p class="itin-msg" id="itinMsg"></p>';box.querySelectorAll('.itin-row button').forEach(b=>b.onclick=()=>removeStop(b.dataset.id,b.dataset.type));document.getElementById('itinSave').onclick=saveItin;document.getElementById('itinShare').onclick=shareItin;document.getElementById('itinPrint').onclick=()=>window.print();document.getElementById('itinClear').onclick=()=>{itinerary=[];itinTip='';try{localStorage.removeItem(ITIN_KEY)}catch(e){}renderItin()}}
+loadItinerary();renderItin();
 async function send(text){const q=(text??input.value).trim();if(!q||busy)return;busy=true;input.value='';const ph=document.getElementById('placeholder');if(ph)ph.remove();
  thread.insertAdjacentHTML('beforeend','<div class="msg-u">'+esc(q)+'</div>');
  const wait=document.createElement('p');wait.className='msg-s display';wait.style.fontStyle='italic';wait.style.color='#8A7A62';wait.textContent='Decanting a recommendation…';thread.appendChild(wait);thread.scrollTop=thread.scrollHeight;
@@ -165,6 +180,7 @@ async function send(text){const q=(text??input.value).trim();if(!q||busy)return;
    eats.forEach(e2=>{h+='<p class="eat"><b>🍽 '+esc(e2.name)+'</b> — '+esc(e2.town)+' · '+esc(e2.note)+'</p>'});
    if(res.route_tip)h+='<p class="route">🚗 '+esc(res.route_tip)+'</p>';
    h+='</div>';thread.insertAdjacentHTML('beforeend',h);
+   if(picks.length||eats.length)addToItinerary(picks,eats,res.route_tip);
    history.push({role:'assistant',content:JSON.stringify(res)});
   }
  }catch(e){wait.remove();thread.insertAdjacentHTML('beforeend','<div class="msg-s">The cellar door stuck for a moment — please try again.</div>');history.pop();}
