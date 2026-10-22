@@ -48,7 +48,7 @@
   <div class="nav">
     <a class="brand" href="/"><img src="/logo.svg" alt="Napa Wino"><span><b>Napa Wino</b><i>Your Napa sommelier &amp; valley guide</i></span></a>
     <nav class="links">
-      <a href="/#month">This Month</a><a href="/#towns">Towns</a><a href="/sommelier.html">Sommelier</a><a href="/#wineries">Wineries</a>
+      <a href="/#month">This Month</a><a href="/#towns">Towns</a><a href="/sommelier.html">Sommelier</a><a href="/wineries.html">Wineries</a>
       <div class="drop" id="drop"><button type="button" id="dropBtn" aria-expanded="false">Guides</button>
         <div class="menu">
           <p class="hdr">Plan the trip</p>
@@ -76,7 +76,7 @@
   </div>
   <div class="mnav" id="mnav">
     <h5>Explore</h5>
-    <a href="/#month">This month in Napa</a><a href="/#towns">Towns &amp; GPS guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/napa.html">Napa</a><a href="/yountville.html">Yountville</a><a href="/st-helena.html">St. Helena</a><a href="/calistoga.html">Calistoga</a><a href="/#wineries">Winery directory (50+)</a><a href="/#experiences">Experiences</a>
+    <a href="/#month">This month in Napa</a><a href="/#towns">Towns &amp; GPS guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/napa.html">Napa</a><a href="/yountville.html">Yountville</a><a href="/st-helena.html">St. Helena</a><a href="/calistoga.html">Calistoga</a><a href="/wineries.html">Winery directory (50+)</a><a href="/#experiences">Experiences</a>
     <h5>Plan the trip</h5>
     <a href="/plan-your-trip.html">Plan Your Trip: The Complete Guide</a><a href="/first-tasting-guide.html">Your First Tasting, No Stress</a><a href="/itineraries.html">Plan a Day</a><a href="/events.html">What's On</a><a href="/music-and-dinners.html">Live Music &amp; Dinners</a><a href="/harvest-2026.html">Harvest 2026</a><a href="/articles/first-time-napa-guide.html">First Time in Napa?</a><a href="/articles/best-time-to-visit-napa.html">Best Time to Visit, Month by Month</a><a href="/articles/napa-towns-guide.html">Where to Stay: Town by Town</a><a href="/articles/3-day-napa-itinerary.html">The Perfect 3-Day Itinerary</a>
     <h5>Know the valley</h5>
@@ -91,23 +91,27 @@
 <section class="hero">
   <img class="mark" src="/logo.svg" alt="">
   <p class="eyebrow">Your Napa sommelier · Napa Valley, California</p>
-  <h1>Everyone here is a wino.<br><em>Some just have better stemware.</em></h1>
-  <p class="sub">The independent Napa Valley guide for visitors from anywhere — 50+ wineries, the Wine Train, dawn balloon launches, ridge trails and Michelin tables, with a free Napa sommelier who turns it all into a day that actually works.</p>
-  <div class="hero-cta"><a class="btn btn-gold" href="/#sommelier">Ask the Napa sommelier →</a><a class="btn btn-ghost" href="/#month">This month's picks</a></div>
-  <div class="whatson" id="heroWhatson" aria-live="polite"></div>
+  <h1>Skip the research. Just tell us your day.</h1>
+  <p class="sub">A free AI Napa sommelier plans your route across 50+ wineries so you never backtrack on Highway 29 — plus the Wine Train, dawn balloon launches, ridge trails and Michelin tables. <em>Everyone here is a wino. Some just have better stemware.</em></p>
+  <div class="hero-cta"><a class="btn btn-gold" href="/sommelier.html">Plan My Napa Day →</a><a class="btn btn-ghost" href="/#towns">Explore the Valley</a></div>
   <div class="stats">
     <div><div class="n">50+</div><div class="l">Wineries</div></div>
     <div><div class="n">16</div><div class="l">Napa AVAs</div></div>
-    <div><div class="n">4</div><div class="l">GPS towns</div></div>
+    <div><div class="n">4</div><div class="l">Towns to explore</div></div>
     <div><div class="n">8</div><div class="l">Field guides</div></div>
     <div><div class="n">0</div><div class="l">Velvet ropes</div></div>
   </div>
 </section>
 
+<section class="wrap" id="whatson" style="padding-top:34px;padding-bottom:6px">
+  <p class="eyebrow">On right now</p>
+  <div class="whatson" id="heroWhatson" aria-live="polite"></div>
+</section>
+
 <div class="wrap" id="towns">
   <div class="geo">
     <div class="geo-row">
-      <div style="flex:1;min-width:250px"><p class="eyebrow">Live GPS geofencing · explore by town</p><p class="t">Tap a town — or let your phone detect where you are. No app needed.</p></div>
+      <div style="flex:1;min-width:250px"><p class="eyebrow">Explore by town</p><p class="t">Tap a town — or let your phone detect where you are. No app needed.</p></div>
       <button class="chip" id="detectBtn">📍 Detect my location</button>
     </div>
     <div class="towngrid" id="townGrid"></div>
@@ -188,12 +192,10 @@
 
 <section class="wrap" id="wineries" style="padding-top:56px;padding-bottom:48px">
   <div class="dir-head">
-    <div><p class="eyebrow">The Cellar</p><h2 class="title">The Napa Valley winery directory</h2></div>
-    <div class="filters" id="filters"></div>
+    <div><p class="eyebrow">The Cellar</p><h2 class="title">Featured Napa Valley wineries</h2><p class="lede" style="margin-top:6px">A taste of the directory — castles, caves, cult estates and bubbles. The full list of 50+ verified wineries, with search and filters, lives on its own page.</p></div>
   </div>
-  <input class="search" id="searchBox" placeholder="Search wineries, towns, AVAs…" aria-label="Search wineries">
-  <p class="count" id="countLine"></p>
   <div class="grid" id="dirGrid"></div>
+  <div style="text-align:center;margin-top:28px"><a class="btn btn-wine" href="/wineries.html">Browse All 50+ Wineries →</a></div>
 </section>
 
 <section class="re-strip"><div class="wrap">
@@ -296,7 +298,7 @@
   <div class="fgrid">
     <div><img src="/logo.svg" alt="Napa Wino"><p style="font-size:12.5px;max-width:260px">Your free Napa sommelier and the unstuffy Napa Valley guide. Zero paid placements in the wine and dining guide.</p></div>
     <div><h4>Plan the trip</h4><a href="/#month">This Month in Napa</a><a href="/articles/first-time-napa-guide.html">First Time in Napa?</a><a href="/articles/best-time-to-visit-napa.html">Best Time to Visit</a><a href="/articles/napa-towns-guide.html">Where to Stay</a><a href="/articles/3-day-napa-itinerary.html">The 3-Day Itinerary</a><a href="/dog-friendly.html">Dog-Friendly Napa</a><a href="/things-to-do.html">Beyond Wine: Things to Do</a></div>
-    <div><h4>Know the valley</h4><a href="/articles/napa-avas-explained.html">The 16 AVAs, Explained</a><a href="/articles/best-napa-wineries.html">Best Wineries by Vibe</a><a href="/articles/napa-wine-train-guide.html">The Wine Train</a><a href="/#wineries">Winery Directory</a></div>
+    <div><h4>Know the valley</h4><a href="/articles/napa-avas-explained.html">The 16 AVAs, Explained</a><a href="/articles/best-napa-wineries.html">Best Wineries by Vibe</a><a href="/articles/napa-wine-train-guide.html">The Wine Train</a><a href="/wineries.html">Winery Directory</a></div>
     <div><h4>More</h4><a href="/about.html">What Is Napa Wino?</a><a href="/real-estate.html">Napa Real Estate</a><a href="/articles/napa-real-estate-guide.html">Buying Property Guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/#faq">Napa Valley FAQ</a></div>
   </div>
   <div class="base">
@@ -340,17 +342,12 @@ function initials(n){return n.split(/\s+/).filter(x=>/[A-Za-zÀ-ÿ]/.test(x)).sl
 function logoURL(u){try{return 'https://www.google.com/s2/favicons?domain='+new URL(u).hostname+'&sz=128'}catch(e){return null}}
 function badgeHTML(w){const lu=w.url?logoURL(w.url):null;if(!lu)return '<span class="badge"><span class="mono">'+esc(initials(w.name))+'</span></span>';return '<span class="badge"><img src="'+lu+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mono" style="display:none">'+esc(initials(w.name))+'</span></span>'}
 function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
-(function(){const list={"@context":"https://schema.org","@type":"ItemList","name":"Napa Valley Winery Directory","numberOfItems":WINERIES.length,"itemListElement":WINERIES.map((w,i)=>({"@type":"ListItem","position":i+1,"item":{"@type":"Winery","name":w.name,"description":w.blurb,"address":{"@type":"PostalAddress","addressLocality":w.town,"addressRegion":"CA","addressCountry":"US"},...(w.url?{"url":w.url}:{})}}))};const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(list);document.head.appendChild(s)})();
+const FEATURED_IDS=["opus","amorosa","jarvis","harlan","schramsberg","chandon","darioush","vsattui","stagsleap"];
+document.getElementById('dirGrid').innerHTML=FEATURED_IDS.map(id=>WINERIES.find(w=>w.id===id)).filter(Boolean).map(w=>cardHTML(w)).join('');
 const geoTip=document.getElementById('geoTip'),townGrid=document.getElementById('townGrid');
 function enterTown(name){const t=TOWNS[name];if(!t)return;[...townGrid.children].forEach(c=>c.classList.toggle('active',c.dataset.town===name));geoTip.className='geo-tip show';geoTip.innerHTML='<p class="eyebrow">📍 '+esc(name)+'</p><p style="font-size:14.5px;margin-top:7px;color:#4E443A">'+esc(t.tip)+'</p><p style="font-size:12.5px;margin-top:8px;color:#7C6C56">Nearby: '+t.nearby.map(id=>esc((WINERIES.find(w=>w.id===id)||{}).name||'')).filter(Boolean).join(' · ')+' · <a href="'+({"Napa":"/napa.html","Yountville":"/yountville.html","St. Helena":"/st-helena.html","Calistoga":"/calistoga.html"})[name]+'" style="color:#7B2947">Full '+esc(name)+' guide →</a></p>'}
 Object.entries(TOWNS).forEach(([n,t])=>{const c=document.createElement('div');c.className='towncard';c.dataset.town=n;c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Explore '+n);c.style.backgroundImage="url('"+t.img+"')";c.innerHTML='<div class="shade"></div><div class="lbl"><span>'+esc(t.tag)+'</span><b>'+esc(n)+'</b></div>';const P={"Napa":"/napa.html","Yountville":"/yountville.html","St. Helena":"/st-helena.html","Calistoga":"/calistoga.html"};const go=()=>{location.href=P[n]||'/'};c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};townGrid.appendChild(c)});
 document.getElementById('detectBtn').onclick=()=>{if(!navigator.geolocation){alert('Geolocation not supported on this device.');return}navigator.geolocation.getCurrentPosition(p=>{const la=p.coords.latitude,lo=p.coords.longitude;let best=null,bd=1e9;for(const[n,t]of Object.entries(TOWNS)){const d=(t.lat-la)**2+(t.lng-lo)**2;if(d<bd){bd=d;best=n}}enterTown(best);if(Math.sqrt(bd)>0.9){geoTip.innerHTML+='<p style="font-size:11.5px;margin-top:8px;color:#8A7A62">You look far from the valley — showing the nearest zone as a preview.</p>'}},()=>{geoTip.className='geo-tip show';geoTip.innerHTML='<p style="font-size:14.5px">Location access was declined — tap a town above to preview its zone instead.</p>'})};
-const TAGS=["All","Icon","Cult Classic","Castle","Cave Tour","Historic","Sparkling","Modern","Family"];
-const filters=document.getElementById('filters'),dirGrid=document.getElementById('dirGrid'),countLine=document.getElementById('countLine'),searchBox=document.getElementById('searchBox');
-let activeTag="All";
-function renderDir(){const q=searchBox.value.trim().toLowerCase();let list=activeTag==="All"?WINERIES:WINERIES.filter(w=>w.tags.includes(activeTag));if(q)list=list.filter(w=>(w.name+' '+w.town+' '+w.ava+' '+w.blurb).toLowerCase().includes(q));dirGrid.innerHTML=list.map(w=>cardHTML(w)).join('');countLine.textContent=list.length+' of '+WINERIES.length+' estates';[...filters.children].forEach(b=>b.classList.toggle('active',b.textContent===activeTag))}
-TAGS.forEach(t=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.onclick=()=>{activeTag=t;renderDir()};filters.appendChild(b)});
-searchBox.addEventListener('input',renderDir);renderDir();
 const thread=document.getElementById('thread'),input=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),qp=document.getElementById('quickPrompts');
 let history=[],busy=false;
 const TOWN_NAMES={napa:'Napa',yountville:'Yountville','st-helena':'St. Helena',calistoga:'Calistoga'};

@@ -59,7 +59,8 @@ const NEW_PAGES = [
   'about.html',
   'plan-your-trip.html',
   'first-tasting-guide.html',
-  'sommelier.html'
+  'sommelier.html',
+  'wineries.html'
 ];
 
 const SITEMAP_ADD = [
@@ -71,7 +72,8 @@ const SITEMAP_ADD = [
   ['about.html', 'monthly', '0.7'],
   ['plan-your-trip.html', 'monthly', '0.95'],
   ['first-tasting-guide.html', 'monthly', '0.9'],
-  ['sommelier.html', 'weekly', '0.95']
+  ['sommelier.html', 'weekly', '0.95'],
+  ['wineries.html', 'weekly', '0.9']
 ];
 
 const LLMS_ADD =
@@ -83,7 +85,8 @@ const LLMS_ADD =
   "- [Napa Valley Itineraries](https://www.napawino.com/itineraries.html): one- and two-day plans built around drive times, not wish lists\n" +
   "- [Why Napa Still Looks Like This](https://www.napawino.com/ag-preserve.html): the 1968 Agricultural Preserve and what it means for visitors and buyers\n" +
   "- [Live Music & Seasonal Dinners](https://www.napawino.com/music-and-dinners.html): named acts at Napa Music Hall and the Uptown Theatre, plus current harvest dinners, updated weekly\n" +
-  "- [Napa Sommelier — Free AI Wine Tasting Planner](https://www.napawino.com/sommelier.html): a free AI tool that recommends wineries from a 50+ estate database and sequences them into a route, with no account and no paid placements";
+  "- [Napa Sommelier — Free AI Wine Tasting Planner](https://www.napawino.com/sommelier.html): a free AI tool that recommends wineries from a 50+ estate database and sequences them into a route, with no account and no paid placements\n" +
+  "- [Napa Valley Winery Directory](https://www.napawino.com/wineries.html): the full, searchable, filterable directory of 50+ verified Napa Valley wineries by vibe, town and AVA, with zero paid placements";
 
 async function grab(rel) {
   const url = `${ORIGIN}/${rel}`;
