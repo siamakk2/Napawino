@@ -53,6 +53,7 @@
 </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <header><div class="wrap">
   <div class="nav">
     <a class="brand" href="/"><img src="/logo.svg" alt="Napa Wino"><span><b>Napa Wino</b><i>Your Napa sommelier &amp; valley guide</i></span></a>
@@ -67,7 +68,7 @@
   </div>
 </div></header>
 
-<section class="hero" style="padding:70px 22px 60px">
+<section id="main" class="hero" style="padding:70px 22px 60px">
   <p class="eyebrow">The Suggester · free Napa sommelier</p>
   <h1>Ask the Napa Sommelier</h1>
   <p class="sub">A free AI wine tasting planner for Napa Valley. Describe what you like in plain English — a grape, a mood, a view — and it matches you against 50+ verified estates, orders the stops so you never backtrack on Highway 29, and slips a lunch table in between. No account. No fee. No paid placements, ever.</p>
@@ -77,7 +78,7 @@
   <div class="somm">
     <div class="somm-head"><img src="/logo.svg" alt="">The Suggester · your wino-in-chief</div>
     <div class="somm-body">
-      <div class="thread" id="thread"><p class="display" style="font-style:italic;font-size:21px;text-align:center;color:#8A7A62;padding:18px 0" id="placeholder">“I like bold Cabernets and want a view…”</p></div>
+      <div class="thread" id="thread"><p class="display" style="font-style:italic;font-size:21px;text-align:center;color:#756651;padding:18px 0" id="placeholder">“I like bold Cabernets and want a view…”</p></div>
       <div class="qp" id="quickPrompts"></div>
       <div id="townCtx"></div>
       <div class="ask"><input id="askInput" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier"><button class="btn btn-gold" id="askBtn">Ask</button></div>
@@ -144,7 +145,7 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
 function logoURL(u){try{const h=new URL(u).hostname;return 'https://www.google.com/s2/favicons?sz=64&domain='+h}catch(e){return null}}
 function initials(n){return (n||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()}
 function badgeHTML(w){const lu=w.url?logoURL(w.url):null;if(!lu)return '<span class="badge"><span class="mono">'+esc(initials(w.name))+'</span></span>';return '<span class="badge"><img src="'+lu+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mono" style="display:none">'+esc(initials(w.name))+'</span></span>'}
-function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.access?'<p class="meta" style="font-size:12px;color:#7C6C56;margin-top:8px">🚪 '+esc(w.access)+'<br>🐾 '+esc(w.dog)+'<br>💳 '+esc(w.price)+'</p>':'')+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
+function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.access?'<p class="meta" style="font-size:12px;color:#756651;margin-top:8px">🚪 '+esc(w.access)+'<br>🐾 '+esc(w.dog)+'<br>💳 '+esc(w.price)+'</p>':'')+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
 const thread=document.getElementById('thread'),input=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),qp=document.getElementById('quickPrompts');
 let history=[],busy=false;
 const TOWN_NAMES={napa:'Napa',yountville:'Yountville','st-helena':'St. Helena',calistoga:'Calistoga'};
@@ -165,7 +166,7 @@ function renderItin(){const box=document.getElementById('itinBox'),sec=document.
 loadItinerary();renderItin();
 async function send(text){const q=(text??input.value).trim();if(!q||busy)return;busy=true;input.value='';const ph=document.getElementById('placeholder');if(ph)ph.remove();
  thread.insertAdjacentHTML('beforeend','<div class="msg-u">'+esc(q)+'</div>');
- const wait=document.createElement('p');wait.className='msg-s display';wait.style.fontStyle='italic';wait.style.color='#8A7A62';wait.textContent='Decanting a recommendation…';thread.appendChild(wait);thread.scrollTop=thread.scrollHeight;
+ const wait=document.createElement('p');wait.className='msg-s display';wait.style.fontStyle='italic';wait.style.color='#756651';wait.textContent='Decanting a recommendation…';thread.appendChild(wait);thread.scrollTop=thread.scrollHeight;
  const sendContent=(townCtx&&history.length===0)?('Starting in '+townCtx+'. '+q):q;
  history.push({role:'user',content:sendContent});
  try{

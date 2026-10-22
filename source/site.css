@@ -1,8 +1,8 @@
-:root{--wine:#5C1418;--wine-deep:#3A0C0E;--brand:#7B2947;--cream:#FAF5EA;--sand:#F2E9D8;--paper:#FFFDF8;--line:#E4D8C0;--gold:#B0873A;--olive:#5E6B4F;--ink:#2E2622;--body:#4E443A}
+:root{--wine:#5C1418;--wine-deep:#3A0C0E;--brand:#7B2947;--cream:#FAF5EA;--sand:#F2E9D8;--paper:#FFFDF8;--line:#E4D8C0;--gold:#B0873A;--gold-text:#82642B;--olive:#5E6B4F;--ink:#2E2622;--body:#4E443A}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Jost',sans-serif;color:var(--ink);line-height:1.55;background:var(--cream);background-image:linear-gradient(180deg,#FBF7EF,#F4EBDA 45%,#FBF7EF);background-attachment:fixed}
 .display{font-family:'Cormorant Garamond',serif}
-.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--gold-text)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 header{position:sticky;top:0;z-index:60;background:rgba(250,245,234,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
@@ -12,23 +12,23 @@ header{position:sticky;top:0;z-index:60;background:rgba(250,245,234,.97);backdro
 .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
 .brand img{width:30px;height:29px;display:block}
 .brand b{font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--brand);font-weight:700;line-height:1}
-.brand i{display:block;font-style:normal;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:2px;white-space:nowrap}
+.brand i{display:block;font-style:normal;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-top:2px;white-space:nowrap}
 .drop{position:relative}
 .drop>button{cursor:pointer;font-family:inherit;font-size:14px;color:var(--body);background:none;border:none;display:flex;align-items:center;gap:4px}
-.drop>button:after{content:'\25be';font-size:10px;color:var(--gold)}
+.drop>button:after{content:'\25be';font-size:10px;color:var(--gold-text)}
 .drop:hover>button,.drop.open>button{color:var(--brand)}
 .menu{position:absolute;top:28px;left:-14px;background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 14px 34px rgba(60,30,15,.18);padding:8px;min-width:310px;display:none;z-index:70}
 .drop:hover .menu,.drop.open .menu{display:block}
 .menu a{display:block;padding:8px 12px;border-radius:3px;font-size:13px;line-height:1.35;color:var(--body)}
 .menu a:hover{background:var(--sand);color:var(--brand)}
 .menu a b{display:block;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--wine);font-weight:600}
-.menu .hdr{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;padding:8px 12px 4px}
+.menu .hdr{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;padding:8px 12px 4px}
 .burger{display:none;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:9px 12px;cursor:pointer;color:var(--brand);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;font-family:inherit;align-items:center;gap:7px}
 .burger span{display:block;width:16px}
 .burger span i{display:block;height:2px;background:var(--brand);margin:3px 0;border-radius:2px}
 .mnav{display:none;border-top:1px solid var(--line)}
 .mnav.open{display:block;max-height:calc(100dvh - 66px);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 0 24px;overscroll-behavior:contain}
-.mnav h5{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:16px 0 2px}
+.mnav h5{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin:16px 0 2px}
 .mnav a{display:block;padding:12px 2px;font-size:15.5px;color:var(--body);text-decoration:none;border-bottom:1px solid #EFE6D4}
 .btn{display:inline-block;border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:11px 20px;border-radius:3px;text-decoration:none}
 .btn-wine{background:var(--brand);color:#FFF6E6}.btn-wine:hover{background:#95335a}
@@ -76,14 +76,14 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .newsletter-card form{flex:1;min-width:280px;max-width:420px}
 .nl-row{display:flex;gap:8px}
 .nl-row input{flex:1;padding:11px 16px;border:1px solid var(--line);border-radius:999px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink)}
-.nl-consent{display:block;margin-top:10px;font-size:11.5px;color:#7C6C56;line-height:1.5}
+.nl-consent{display:block;margin-top:10px;font-size:11.5px;color:#756651;line-height:1.5}
 .nl-consent input{margin-right:6px;vertical-align:middle}
 .nl-consent a{color:#7B2947}
 .nl-msg{font-size:12.5px;color:var(--brand);margin-top:8px;min-height:1em}
 .mcard{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:4px;padding:22px;display:flex;flex-direction:column}
 .mcard .badge2{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#FFF6E6;background:var(--brand);display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;align-self:flex-start}
 .mcard h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--wine);font-weight:600;margin-top:12px;line-height:1.12}
-.mcard .where{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:4px}
+.mcard .where{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-top:4px}
 .mcard p{font-size:14px;color:var(--body);margin-top:10px;flex:1}
 .mcard .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .mcard .links a{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:3px}
@@ -107,26 +107,26 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .badge img{width:29px;height:29px;object-fit:contain}
 .mono{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--brand);display:flex;align-items:center;justify-content:center;width:100%;height:100%}
 .card h3{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--wine);font-weight:600;line-height:1.12}
-.card .loc{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;font-weight:600}
+.card .loc{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);margin-bottom:2px;font-weight:600}
 .card p.b{font-size:13.5px;color:var(--body);margin-top:9px}
 .card a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);text-decoration:none;display:inline-block;margin-top:10px;font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .tag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--sand);color:#75592A;padding:3px 9px;border-radius:999px;font-weight:600}
 .qp{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .town-pill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:6px 12px;border-radius:999px;background:#FBF3E4;border:1px solid var(--line);font-size:13px;color:#7B2947;font-weight:500}
-.town-pill button{border:none;background:none;color:#8A7A62;cursor:pointer;font-size:13px;line-height:1;padding:0 2px}
+.town-pill button{border:none;background:none;color:#756651;cursor:pointer;font-size:13px;line-height:1;padding:0 2px}
 .town-pill button:hover{color:#7B2947}
 .ask{display:flex;gap:8px;margin-top:12px}
 .itin{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 24px;box-shadow:0 10px 30px rgba(60,30,15,.08)}
 .itin h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);margin:0 0 4px}
-.itin .itin-note{font-size:12px;color:#8A7A62;margin-bottom:14px}
+.itin .itin-note{font-size:12px;color:#756651;margin-bottom:14px}
 .itin-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
 .itin-row:last-of-type{border-bottom:none}
 .itin-row .itin-label{flex:1;font-size:14px;color:var(--body)}
 .itin-row .itin-label b{color:var(--ink)}
-.itin-row button{border:none;background:none;color:#8A7A62;cursor:pointer;font-size:15px;line-height:1;padding:2px 4px}
+.itin-row button{border:none;background:none;color:#756651;cursor:pointer;font-size:15px;line-height:1;padding:2px 4px}
 .itin-row button:hover{color:var(--brand)}
-.itin-tip{font-size:13px;color:#7C6C56;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.itin-tip{font-size:13px;color:#756651;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .itin-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .itin-actions button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 16px;font-size:13px;font-family:inherit;cursor:pointer}
 .itin-actions button:hover{border-color:var(--brand);color:var(--brand)}
@@ -149,7 +149,7 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .dir-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:16px}
 .filters{display:flex;flex-wrap:wrap;gap:7px}
 .search{width:100%;max-width:360px;padding:11px 18px;border:1px solid var(--line);border-radius:999px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink)}
-.count{font-size:12.5px;color:#7C6C56;margin:12px 0 14px;font-weight:500}
+.count{font-size:12.5px;color:#756651;margin:12px 0 14px;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:15px}
 .band{position:relative;padding:70px 22px;text-align:center;background-size:cover;background-position:center}
 .band blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3.2vw,33px);color:#FFFFFF;max-width:780px;margin:0 auto;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 18px rgba(0,0,0,.7)}
@@ -191,7 +191,7 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .thumbs img{width:100%;height:80px;object-fit:cover;display:block}
 .prop .bd{padding:20px}
 .prop h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--wine);font-weight:600}
-.prop .loc{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.prop .loc{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);font-weight:600}
 .specs{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:11px;font-size:13.5px;color:var(--body)}
 .specs b{color:var(--wine);font-weight:600}
 .prop p.d{font-size:14.5px;color:var(--body);margin-top:11px}
@@ -209,10 +209,10 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .note{background:var(--sand);border-left:3px solid var(--gold);border-radius:3px;padding:14px 16px;font-size:13.5px;color:#5A4A2E;margin-top:18px}
 .ok{display:none;background:#EEF6EC;border:1px solid #86AC80;color:#2E5C2E;padding:14px 16px;border-radius:3px;font-size:14px;margin-top:16px}
 .err{display:none;background:#FBEEEE;border:1px solid #C08484;color:#7A2E2E;padding:14px 16px;border-radius:3px;font-size:14px;margin-top:16px}
-.disc{font-size:11.5px;color:#8A7B66;margin-top:18px}
-footer{padding:34px 22px 30px;font-size:12.5px;color:#7C6C56;background:var(--sand);border-top:1px solid var(--line)}
+.disc{font-size:11.5px;color:#756651;margin-top:18px}
+footer{padding:34px 22px 30px;font-size:12.5px;color:#756651;background:var(--sand);border-top:1px solid var(--line)}
 footer .fgrid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;text-align:left}
-footer h4{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+footer h4{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-bottom:8px}
 footer .fgrid a{display:block;color:var(--body);text-decoration:none;font-size:13px;margin-top:6px}
 footer .fgrid a:hover{color:var(--brand)}
 footer img{width:34px;height:33px;margin-bottom:8px}
@@ -222,6 +222,8 @@ footer .credits{font-size:10.5px;margin-top:6px;line-height:1.6}
 footer .base a{color:var(--brand);text-decoration:none;font-weight:500}
 input:focus,button:focus-visible,summary:focus-visible,.towncard:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--wine);color:#fff;padding:10px 18px;border-radius:0 0 4px 0;font-size:14px;font-weight:600;text-decoration:none}
+.skip-link:focus{left:0}
 
 /* v6.2 — guide-card thumbnails + faded wine-country backdrop */
 .gcard{overflow:hidden}

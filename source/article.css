@@ -1,4 +1,4 @@
-:root{--wine:#5C1418;--brand:#7B2947;--cream:#FAF5EA;--sand:#F2E9D8;--paper:#FFFDF8;--line:#E4D8C0;--gold:#B0873A;--ink:#2E2622;--body:#4E443A}
+:root{--wine:#5C1418;--brand:#7B2947;--cream:#FAF5EA;--sand:#F2E9D8;--paper:#FFFDF8;--line:#E4D8C0;--gold:#B0873A;--gold-text:#82642B;--ink:#2E2622;--body:#4E443A}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Jost',sans-serif;color:var(--ink);line-height:1.68;background:var(--cream);background-image:linear-gradient(180deg,#FBF7EF,#F4EBDA 50%,#FBF7EF);background-attachment:fixed}
 header{position:sticky;top:0;background:rgba(250,245,234,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:40}
@@ -12,7 +12,7 @@ header{position:sticky;top:0;background:rgba(250,245,234,.97);backdrop-filter:bl
 .banner a{background:rgba(255,251,242,.94);color:var(--brand);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:11px 18px;border-radius:3px;text-decoration:none;box-shadow:0 6px 18px rgba(30,10,5,.28)}
 .banner a:hover{background:#fff}
 main{max-width:840px;margin:0 auto;padding:40px 22px 64px}
-.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-text);font-weight:600}
 h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.8vw,45px);color:var(--wine);font-weight:600;line-height:1.1;margin-top:8px}
 h2{font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--wine);font-weight:600;margin-top:34px}
 h3{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--brand);font-weight:600;margin-top:22px}
@@ -20,15 +20,15 @@ p{font-size:16px;color:var(--body);margin-top:12px}
 ul{margin:12px 0 0 20px}
 li{font-size:15.5px;color:var(--body);margin-top:7px}
 a{color:var(--brand)}
-.meta{font-size:12.5px;color:#8A7B66;margin-top:9px}
+.meta{font-size:12.5px;color:#756651;margin-top:9px}
 .toc{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-top:22px}
 .toc p{font-size:13px;margin-top:6px}
 .toc a{text-decoration:none}
 .ava,.season,.town,.box{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;padding:17px 21px;margin-top:15px}
 .ava h3,.town h2{margin-top:0}
-.ava .fact{font-size:12.5px;color:#7C6C56;margin-top:6px;font-weight:500}
+.ava .fact{font-size:12.5px;color:#756651;margin-top:6px;font-weight:500}
 .season b,.box b{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--brand);font-weight:600;display:block}
-.season .tag,.town .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7C6C56;font-weight:600;margin-top:3px;display:block}
+.season .tag,.town .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#756651;font-weight:600;margin-top:3px;display:block}
 .season p,.town p,.box p{font-size:15.5px;margin-top:8px}
 .town .fit{font-size:14px;color:var(--wine);font-weight:500;margin-top:10px}
 .verdict{background:var(--sand);border:1px solid var(--line);border-radius:4px;padding:20px 24px;margin-top:26px}
@@ -37,10 +37,10 @@ a{color:var(--brand)}
 .cta a{color:#F2CE87;text-decoration:none;font-weight:600}
 .cta .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .cta .btnrow a{background:#F2CE87;color:#4A1020;padding:11px 18px;border-radius:3px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
-.disc{font-size:11.5px;color:#8A7B66;margin-top:26px}
+.disc{font-size:11.5px;color:#756651;margin-top:26px}
 .related{border-top:1px solid var(--line);margin-top:44px;padding-top:22px}
 .related a{display:block;margin-top:8px;font-size:14.5px}
-footer{text-align:center;padding:26px 22px;font-size:12.5px;color:#7C6C56;background:var(--sand);border-top:1px solid var(--line)}
+footer{text-align:center;padding:26px 22px;font-size:12.5px;color:#756651;background:var(--sand);border-top:1px solid var(--line)}
 footer a{color:var(--brand);text-decoration:none}
 footer .slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--brand);margin-bottom:5px}
 
@@ -59,6 +59,8 @@ body{background-image:linear-gradient(rgba(251,247,239,.88),rgba(247,239,226,.90
 .bcta{position:absolute;top:14px;right:16px;z-index:2}
 main{padding-top:30px}
 @media(max-width:560px){.bcta{display:none}}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--wine);color:#fff;padding:10px 18px;border-radius:0 0 4px 0;font-size:14px;font-weight:600;text-decoration:none}
+.skip-link:focus{left:0}
 
 /* v6.11 — dead-image safety net: any background photo that fails to load
    gets a solid on-brand gradient instead of a blank/gray hole. Applied by
