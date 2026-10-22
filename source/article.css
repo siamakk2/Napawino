@@ -64,3 +64,11 @@ main{padding-top:30px}
    gets a solid on-brand gradient instead of a blank/gray hole. Applied by
    a small script on each page; see imgFallback in page source. */
 .img-fallback{background-image:linear-gradient(135deg,var(--brand),var(--wine))!important}
+
+/* v6.12 — slow banner zoom, site-wide. Previously duplicated per-page in
+   pages/*.html; consolidated here so it also reaches every CARRY-fetched
+   live page (napa.html, yountville.html, etc.) and articles/*.html, all of
+   which share this stylesheet and the .banner class. */
+.banner{background-size:cover;background-position:center;animation:nwzoom 22s ease-in-out infinite alternate}
+@keyframes nwzoom{from{background-size:100%}to{background-size:112%}}
+@media(prefers-reduced-motion:reduce){.banner{animation:none}}
