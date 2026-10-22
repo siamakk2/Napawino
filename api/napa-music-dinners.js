@@ -62,8 +62,10 @@ module.exports = async (req, res) => {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 4000,
+        model: 'claude-sonnet-5-5',
+        max_tokens: 8000,
+        thinking: { type: 'adaptive' },
+        output_config: { effort: 'low' },
         system: buildSystem(todayLabel),
         tools: [{ type: 'web_search_20250305', name: 'web_search' }],
         messages: [{ role: 'user', content: `Today is ${todayLabel}. Search Napa Music Hall, Uptown Theatre Napa, and current Napa Valley harvest/winemaker dinners for events on or after today, then return the JSON digest.` }]

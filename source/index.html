@@ -132,7 +132,7 @@
 </section>
 
 <section class="wrap" id="month" style="padding-top:46px">
-  <p class="eyebrow">This month in Napa · September 2026</p>
+  <p class="eyebrow">This month in Napa · <span id="monthLabel">October 2026</span></p>
   <h2 class="title">The editors' picks, updated monthly</h2>
   <p class="lede">Three things worth building a trip around right now — chosen by us, paid for by nobody.</p>
   <div class="month">
@@ -140,25 +140,25 @@
       <span class="badge2">Winery of the month</span>
       <h3>Schramsberg</h3>
       <p class="where">Diamond Mountain · Calistoga</p>
-      <p>Harvest 2026 came in unusually early this year, and Schramsberg's sparkling fruit was among the first off the vine. Caves dug by hand in the 1870s, candlelight, and a tasting that ends underground. Reservation essential.</p>
+      <p>Caves dug by hand in the 1870s, candlelight, and a tasting that ends underground — one of the few Napa tastings that feels like an event rather than a transaction. If you're visiting during the 2026 harvest window, ask when you book whether they're still crushing. Reservation essential.</p>
       <div class="links"><a class="p" href="https://www.schramsberg.com" target="_blank" rel="noreferrer">Book a tasting ↗</a><a class="s" href="/harvest-2026.html">This year's harvest →</a></div>
     </div>
     <div class="mcard">
       <span class="badge2">Experience of the month</span>
-      <h3>Watching the crush</h3>
-      <p class="where">Valleywide · early mornings</p>
-      <p>Cabernet is coming in weeks early this year, so September — not October — is when the crush pads are busiest. A handful of wineries let visitors near the sorting line if you ask when booking.</p>
+      <h3>Catching the crush</h3>
+      <p class="where">Valleywide · while it lasts</p>
+      <p>2026 is an early, fast-moving vintage — our <a href="/harvest-2026.html">harvest guide</a> tracks when each grape comes in. A handful of wineries let visitors near the sorting line if you ask when booking, but nobody can promise a pick on a given day.</p>
       <div class="links"><a class="p" href="/harvest-2026.html">Our harvest guide →</a><a class="s" href="/itineraries.html">Build a harvest day →</a></div>
     </div>
     <div class="mcard">
-      <span class="badge2">Night out of the month</span>
+      <span class="badge2">Night out</span>
       <h3>Napa Music Hall &amp; the Uptown</h3>
       <p class="where">Downtown Napa · live music</p>
-      <p>Downtown Napa's music scene changed hands recently: the historic Napa Valley Opera House at 1030 Main is now <strong>Napa Music Hall</strong>, run by the owners of the 863-seat Art Deco <strong>Uptown Theatre</strong> on Third Street. Between them they cover jazz, comedy, touring acts and locals' nights — all walkable from Oxbow.</p>
-      <div class="links"><a class="p" href="https://www.uptowntheatrenapa.com" target="_blank" rel="noreferrer">Uptown listings ↗</a><a class="s" href="/articles/napa-towns-guide.html">Staying downtown →</a></div>
+      <p>Downtown Napa's music scene changed hands recently: the historic Napa Valley Opera House at 1030 Main is now <strong>Napa Music Hall</strong>, run by the owners of the 863-seat Art Deco <strong>Uptown Theatre</strong> on Third Street. Between them they cover jazz, comedy, touring acts and locals' nights — all walkable from Oxbow. See our <a href="/music-and-dinners.html">full listings</a> for what's actually booked this week.</p>
+      <div class="links"><a class="p" href="https://www.uptowntheatrenapa.com" target="_blank" rel="noreferrer">Uptown listings ↗</a><a class="s" href="/music-and-dinners.html">This week's lineup →</a></div>
     </div>
   </div>
-  <p style="font-size:12px;color:#8A7B66;margin-top:14px">Editors' picks, refreshed monthly. Zero paid placements — nobody buys a spot here. Always confirm hours, tickets and reservations directly with the venue.</p>
+  <p style="font-size:12px;color:#8A7B66;margin-top:14px">Editors' picks. Zero paid placements — nobody buys a spot here. Always confirm hours, tickets and reservations directly with the venue.</p>
 </section>
 
 <section class="wrap" id="newsSec" style="padding-top:46px;display:none">
@@ -376,6 +376,7 @@ async function send(text){const q=(text??input.value).trim();if(!q||busy)return;
  thread.scrollTop=thread.scrollHeight;busy=false;}
 </script>
 <script>
+(function(){var ml=document.getElementById('monthLabel');if(ml)ml.textContent=new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});})();
 (function(){function e2(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML}
 fetch('/api/napa-news').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
  if(!d.items||!d.items.length)throw 0;
