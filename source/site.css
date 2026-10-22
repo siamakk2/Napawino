@@ -41,9 +41,9 @@ header{position:sticky;top:0;z-index:60;background:rgba(250,245,234,.97);backdro
 @media(min-width:1021px){.mnav{display:none!important}}
 .hero{position:relative;text-align:center;padding:78px 22px 96px;background-size:cover;background-position:center 55%;background-repeat:no-repeat}
 .hero .mark{width:56px;height:54px;margin:0 auto 14px;display:block;filter:drop-shadow(0 3px 12px rgba(0,0,0,.45))}
-.hero .eyebrow{color:#FBDFA4;text-shadow:0 1px 10px rgba(0,0,0,.65)}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6.2vw,68px);color:#FFFBF2;font-weight:600;line-height:1.04;margin-top:10px;text-shadow:0 2px 22px rgba(20,6,4,.85),0 1px 2px rgba(0,0,0,.6)}
-.hero p.sub{color:#FFF4E2;max-width:640px;margin:16px auto 0;font-size:16px;text-shadow:0 1px 14px rgba(20,6,4,.85)}
+.hero .eyebrow{color:#FBDFA4;text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 12px rgba(0,0,0,.7)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6.2vw,68px);color:#FFFFFF;font-weight:600;line-height:1.04;margin-top:10px;text-shadow:0 1px 3px rgba(0,0,0,.95),0 2px 26px rgba(0,0,0,.8)}
+.hero p.sub{color:#FFF9EE;max-width:640px;margin:16px auto 0;font-size:16px;text-shadow:0 1px 3px rgba(0,0,0,.9),0 1px 16px rgba(0,0,0,.75)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
 .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px}
 .stats div{background:rgba(255,251,242,.93);border-radius:3px;padding:10px 18px;min-width:100px}
@@ -59,7 +59,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(250,245,234,.97);backdro
 .towncard{position:relative;height:186px;border-radius:4px;overflow:hidden;cursor:pointer;background-size:cover;background-position:center}
 .towncard:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(60,30,15,.24)}
 .towncard.active{outline:3px solid var(--gold);outline-offset:-3px}
-.towncard .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,10,8,.92),rgba(28,10,8,.72) 26%,rgba(28,10,8,.15) 58%,rgba(28,10,8,0))}
+.towncard .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,10,8,.72),rgba(28,10,8,.52) 26%,rgba(28,10,8,.10) 58%,rgba(28,10,8,0))}
 .towncard .lbl{position:absolute;left:15px;right:15px;bottom:13px;z-index:2}
 .towncard .lbl b{display:block;font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;color:#FFFBF2;line-height:1.05}
 .towncard .lbl span{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#F2CE87;font-weight:600;margin-bottom:3px}
@@ -108,7 +108,7 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px;margin-top:24px}
 .tile{position:relative;height:230px;border-radius:4px;overflow:hidden;background-size:cover;background-position:center}
 .tile:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(60,30,15,.22)}
-.tile .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,10,8,.9),rgba(26,10,8,.6) 34%,rgba(26,10,8,.08) 72%,rgba(26,10,8,0))}
+.tile .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,10,8,.72),rgba(26,10,8,.46) 34%,rgba(26,10,8,.06) 72%,rgba(26,10,8,0))}
 .tile .txt{position:absolute;left:16px;right:16px;bottom:14px;z-index:2}
 .tile .txt span{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#F2CE87;font-weight:600}
 .tile .txt b{display:block;font-family:'Cormorant Garamond',serif;font-size:24px;color:#FFFBF2;font-weight:600;line-height:1.08;margin:2px 0 4px}
@@ -119,7 +119,7 @@ h2.title{font-family:'Cormorant Garamond',serif;font-size:clamp(29px,4.1vw,41px)
 .count{font-size:12.5px;color:#7C6C56;margin:12px 0 14px;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:15px}
 .band{position:relative;padding:70px 22px;text-align:center;background-size:cover;background-position:center}
-.band blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3.2vw,33px);color:#FFFBF2;max-width:780px;margin:0 auto;font-weight:500;text-shadow:0 2px 16px rgba(30,10,5,.6)}
+.band blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3.2vw,33px);color:#FFFFFF;max-width:780px;margin:0 auto;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 18px rgba(0,0,0,.7)}
 .band cite{display:block;font-style:normal;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#F2CE87;margin-top:16px;font-weight:600}
 .re-strip{background:linear-gradient(100deg,var(--gold),#D8B166)}
 .re-strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
@@ -194,7 +194,7 @@ input:focus,button:focus-visible,summary:focus-visible,.towncard:focus-visible{o
 .gcard{overflow:hidden}
 .gthumb{display:block;height:152px;background-size:cover;background-position:center;margin:-20px -20px 15px;border-bottom:1px solid var(--line)}
 .gcard:hover .gthumb{filter:saturate(1.08)}
-body{background-image:linear-gradient(rgba(251,247,239,.93),rgba(247,239,226,.955)),url('https://images.unsplash.com/photo-1571113606406-f3ca1c36e7e7?q=55&w=1800&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+body{background-image:linear-gradient(rgba(251,247,239,.87),rgba(247,239,226,.89)),url('https://images.unsplash.com/photo-1571113606406-f3ca1c36e7e7?q=55&w=1800&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
 @media(max-width:768px){body{background-attachment:scroll}}
 
 /* v6.10 — What's On live strip (homepage) */
@@ -208,5 +208,5 @@ body{background-image:linear-gradient(rgba(251,247,239,.93),rgba(247,239,226,.95
 
 /* v6.12 — slow zoom on the homepage's photographic sections, matching the
    .banner zoom already used on every article/town page. */
-.hero,.band,.safe{animation:nwzoom 22s ease-in-out infinite alternate}
-@keyframes nwzoom{from{background-size:100%}to{background-size:112%}}
+.hero,.band,.safe{animation:nwzoom 11s ease-in-out infinite alternate}
+@keyframes nwzoom{from{background-size:100%}to{background-size:142%}}
