@@ -18,12 +18,20 @@ function must(haystack, find, label) {
   return true;
 }
 
-// Files carried through from live production. Anything 404ing aborts the build.
+// Files still carried through live from production (binary / non-HTML, or
+// generated artifacts patched below). Anything 404ing aborts the build.
 const CARRY = [
   'logo.svg',
   'robots.txt',
   'llms.txt',
-  'sitemap.xml',
+  'sitemap.xml'
+];
+
+// HTML pages pinned as local source files under carried/ — same pattern as
+// index.html/site.css/article.css. Fixes the bug class where editing these
+// pages' HTML had no effect because the old CARRY array re-fetched them
+// unchanged from production on every build.
+const CARRIED_PAGES = [
   'real-estate.html',
   'dog-friendly.html',
   'things-to-do.html',
@@ -50,7 +58,8 @@ const NEW_PAGES = [
   'music-and-dinners.html',
   'about.html',
   'plan-your-trip.html',
-  'first-tasting-guide.html'
+  'first-tasting-guide.html',
+  'sommelier.html'
 ];
 
 const SITEMAP_ADD = [
@@ -61,7 +70,8 @@ const SITEMAP_ADD = [
   ['music-and-dinners.html', 'weekly', '0.85'],
   ['about.html', 'monthly', '0.7'],
   ['plan-your-trip.html', 'monthly', '0.95'],
-  ['first-tasting-guide.html', 'monthly', '0.9']
+  ['first-tasting-guide.html', 'monthly', '0.9'],
+  ['sommelier.html', 'weekly', '0.95']
 ];
 
 const LLMS_ADD =
@@ -72,7 +82,8 @@ const LLMS_ADD =
   "- [Napa Valley Events](https://www.napawino.com/events.html): verified dates for festivals, harvest balls and seasonal programmes\n" +
   "- [Napa Valley Itineraries](https://www.napawino.com/itineraries.html): one- and two-day plans built around drive times, not wish lists\n" +
   "- [Why Napa Still Looks Like This](https://www.napawino.com/ag-preserve.html): the 1968 Agricultural Preserve and what it means for visitors and buyers\n" +
-  "- [Live Music & Seasonal Dinners](https://www.napawino.com/music-and-dinners.html): named acts at Napa Music Hall and the Uptown Theatre, plus current harvest dinners, updated weekly";
+  "- [Live Music & Seasonal Dinners](https://www.napawino.com/music-and-dinners.html): named acts at Napa Music Hall and the Uptown Theatre, plus current harvest dinners, updated weekly\n" +
+  "- [Napa Sommelier — Free AI Wine Tasting Planner](https://www.napawino.com/sommelier.html): a free AI tool that recommends wineries from a 50+ estate database and sequences them into a route, with no account and no paid placements";
 
 async function grab(rel) {
   const url = `${ORIGIN}/${rel}`;
@@ -115,6 +126,14 @@ function writeOut(rel, buf) {
   live['article.css'] = fs.readFileSync('source/article.css');
   console.log(`loaded article.css from source/ (${live['article.css'].length} B)`);
 
+  // 2b. Pinned HTML pages — local source, not a live fetch.
+  for (const rel of CARRIED_PAGES) {
+    const p = path.join('carried', rel);
+    if (!fs.existsSync(p)) die(`missing local source carried/${rel}`);
+    live[rel] = fs.readFileSync(p);
+    console.log(`loaded ${rel} from carried/ (${live[rel].length} B)`);
+  }
+
   // 3. Patch sitemap.xml.
   let sitemap = live['sitemap.xml'].toString('utf8');
   must(sitemap, '</urlset>', 'sitemap closing tag');
@@ -154,7 +173,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css']).concat(NEW_PAGES)).size;
+  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css']).concat(CARRIED_PAGES).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
