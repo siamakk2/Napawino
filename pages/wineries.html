@@ -37,16 +37,21 @@
 <section class="hero">
   <p class="eyebrow">The Cellar · 50+ verified estates</p>
   <h1>The Napa Valley Winery Directory</h1>
-  <p class="sub">Every winery here is real, current, and listed for free — no paid placements, no sponsored rank. Filter by vibe, search by name, town or AVA, then open the official site to book.</p>
+  <p class="sub">Every winery here is real, current, and listed for free — no paid placements, no sponsored rank. Filter by vibe, town or how to visit, then open the official site to book.</p>
 </section>
 
 <section class="wrap" id="directory" style="padding-top:40px;padding-bottom:48px">
   <div class="dir-head">
-    <div><p class="eyebrow">Browse</p><h2 class="title">Filter by vibe or search by name</h2></div>
+    <div><p class="eyebrow">Browse</p><h2 class="title">Filter by vibe, town or how to visit</h2></div>
     <div class="filters" id="filters"></div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 18px">
+    <select class="search" id="townSel" style="max-width:220px" aria-label="Filter by town"><option value="All">All towns</option></select>
+    <select class="search" id="accessSel" style="max-width:280px" aria-label="Filter by public access"><option value="All">Any public access</option></select>
   </div>
   <input class="search" id="searchBox" placeholder="Search wineries, towns, AVAs…" aria-label="Search wineries">
   <p class="count" id="countLine"></p>
+  <p style="font-size:12px;color:#8A7A62;margin:6px 0 20px;max-width:720px">🚪 Access, 🐾 dog policy and 💳 price band come from our own research into each estate's published info — where we couldn't confirm a detail, it says so ("confirm when booking") rather than guessing. Coordinates and ADA/accessibility details aren't independently verified per venue yet; always call ahead to confirm.</p>
   <div class="grid" id="dirGrid"></div>
 </section>
 
@@ -74,14 +79,27 @@ function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s
 function initials(n){return n.split(/\s+/).filter(x=>/[A-Za-zÀ-ÿ]/.test(x)).slice(0,2).map(x=>x[0].toUpperCase()).join('')}
 function logoURL(u){try{return 'https://www.google.com/s2/favicons?domain='+new URL(u).hostname+'&sz=128'}catch(e){return null}}
 function badgeHTML(w){const lu=w.url?logoURL(w.url):null;if(!lu)return '<span class="badge"><span class="mono">'+esc(initials(w.name))+'</span></span>';return '<span class="badge"><img src="'+lu+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mono" style="display:none">'+esc(initials(w.name))+'</span></span>'}
-function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
+function cardHTML(w){return '<div class="card"><div class="head">'+badgeHTML(w)+'<div><p class="loc">'+esc(w.ava)+' · '+esc(w.town)+'</p><h3>'+esc(w.name)+'</h3></div></div><div class="tags">'+w.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div><p class="b">'+esc(w.blurb)+'</p>'+(w.access?'<p class="meta" style="font-size:12px;color:#7C6C56;margin-top:8px">🚪 '+esc(w.access)+'<br>🐾 '+esc(w.dog)+'<br>💳 '+esc(w.price)+'</p>':'')+(w.url?'<a href="'+w.url+'" target="_blank" rel="noreferrer">Visit official site ↗</a>':'')+'</div>'}
 (function(){const list={"@context":"https://schema.org","@type":"ItemList","name":"Napa Valley Winery Directory","numberOfItems":WINERIES.length,"itemListElement":WINERIES.map((w,i)=>({"@type":"ListItem","position":i+1,"item":{"@type":"Winery","name":w.name,"description":w.blurb,"address":{"@type":"PostalAddress","addressLocality":w.town,"addressRegion":"CA","addressCountry":"US"},...(w.url?{"url":w.url}:{})}}))};const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(list);document.head.appendChild(s)})();
 const TAGS=["All","Icon","Cult Classic","Castle","Cave Tour","Historic","Sparkling","Modern","Family","Dog Friendly"];
-const filters=document.getElementById('filters'),dirGrid=document.getElementById('dirGrid'),countLine=document.getElementById('countLine'),searchBox=document.getElementById('searchBox');
+const ACCESS_GROUPS=[["All","Any public access"],["open","Open to the public"],["allocation","Allocation / invitation only"]];
+function accessGroup(a){return /Allocation|invitation|Mailing-list/i.test(a)?"allocation":"open"}
+const filters=document.getElementById('filters'),dirGrid=document.getElementById('dirGrid'),countLine=document.getElementById('countLine'),searchBox=document.getElementById('searchBox'),townSel=document.getElementById('townSel'),accessSel=document.getElementById('accessSel');
 let activeTag="All";
-function renderDir(){const q=searchBox.value.trim().toLowerCase();let list=activeTag==="All"?WINERIES:WINERIES.filter(w=>w.tags.includes(activeTag));if(q)list=list.filter(w=>(w.name+' '+w.town+' '+w.ava+' '+w.blurb).toLowerCase().includes(q));dirGrid.innerHTML=list.map(w=>cardHTML(w)).join('');countLine.textContent=list.length+' of '+WINERIES.length+' estates';[...filters.children].forEach(b=>b.classList.toggle('active',b.textContent===activeTag))}
+[...new Set(WINERIES.map(w=>w.town))].sort().forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;townSel.appendChild(o)});
+ACCESS_GROUPS.forEach(([v,label])=>{const o=document.createElement('option');o.value=v;o.textContent=label;accessSel.appendChild(o)});
+function renderDir(){
+  const q=searchBox.value.trim().toLowerCase();
+  let list=activeTag==="All"?WINERIES:WINERIES.filter(w=>w.tags.includes(activeTag));
+  if(townSel.value!=="All")list=list.filter(w=>w.town===townSel.value);
+  if(accessSel.value!=="All")list=list.filter(w=>accessGroup(w.access)===accessSel.value);
+  if(q)list=list.filter(w=>(w.name+' '+w.town+' '+w.ava+' '+w.blurb).toLowerCase().includes(q));
+  dirGrid.innerHTML=list.map(w=>cardHTML(w)).join('');
+  countLine.textContent=list.length+' of '+WINERIES.length+' estates';
+  [...filters.children].forEach(b=>b.classList.toggle('active',b.textContent===activeTag));
+}
 TAGS.forEach(t=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.onclick=()=>{activeTag=t;renderDir()};filters.appendChild(b)});
-searchBox.addEventListener('input',renderDir);renderDir();
+searchBox.addEventListener('input',renderDir);townSel.addEventListener('change',renderDir);accessSel.addEventListener('change',renderDir);renderDir();
 </script>
 <script>
 (function(){
