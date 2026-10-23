@@ -21,7 +21,6 @@ function must(haystack, find, label) {
 // Files still carried through live from production (binary / non-HTML, or
 // generated artifacts patched below). Anything 404ing aborts the build.
 const CARRY = [
-  'logo.svg',
   'robots.txt',
   'llms.txt',
   'sitemap.xml'
@@ -129,6 +128,10 @@ function writeOut(rel, buf) {
   live['article.css'] = fs.readFileSync('source/article.css');
   console.log(`loaded article.css from source/ (${live['article.css'].length} B)`);
 
+  if (!fs.existsSync('source/logo.svg')) die('missing source/logo.svg');
+  live['logo.svg'] = fs.readFileSync('source/logo.svg');
+  console.log(`loaded logo.svg from source/ (${live['logo.svg'].length} B)`);
+
   // 2b. Pinned HTML pages — local source, not a live fetch.
   for (const rel of CARRIED_PAGES) {
     const p = path.join('carried', rel);
@@ -176,7 +179,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css']).concat(CARRIED_PAGES).concat(NEW_PAGES)).size;
+  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css', 'logo.svg']).concat(CARRIED_PAGES).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
