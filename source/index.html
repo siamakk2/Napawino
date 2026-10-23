@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="/site.css">
 <style>
 .hero{background-image:linear-gradient(rgba(46,20,12,.38),rgba(46,20,12,.28) 45%,rgba(46,20,12,.46)),url('/video/napa-hero-poster.jpg')}
+.somm-launch .chip{text-decoration:none;display:inline-block}
+.launch-note{font-size:12.5px;color:#756651;margin-top:14px}
+.launch-note a{color:var(--brand);font-weight:600;margin-left:6px}
 /* v6.15 — hero background video loop (pour · Wine Train · balloons · vineyard table · toast) */
 .hero.has-video{overflow:hidden;animation:none;background-color:#2E140C}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;z-index:0;pointer-events:none}
@@ -26,8 +29,8 @@
 .hero.has-video>*:not(.hero-video){position:relative;z-index:2}
 .hero-vid-toggle{position:absolute!important;right:14px;bottom:14px;z-index:3!important;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,249,238,.55);background:rgba(28,6,8,.45);color:#FFF9EE;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .hero-vid-toggle:hover,.hero-vid-toggle:focus-visible{background:rgba(28,6,8,.7);outline:2px solid #FBDFA4;outline-offset:2px}
-.band{background-image:linear-gradient(rgba(46,16,12,.30),rgba(46,16,12,.30)),url('https://images.unsplash.com/photo-1627935563301-3ab81beb385f?q=85&w=2200&auto=format&fit=crop')}
-.safe{background-image:linear-gradient(rgba(46,16,12,.40),rgba(46,16,12,.40)),url('https://images.unsplash.com/photo-1572913017567-02f0649bc4fd?q=85&w=2000&auto=format&fit=crop')}
+.band{background-image:linear-gradient(rgba(46,16,12,.30),rgba(46,16,12,.30)),url('/video/clip-vineyard.jpg')}
+.safe{background-image:linear-gradient(rgba(46,16,12,.40),rgba(46,16,12,.40)),url('/video/clip-train.jpg')}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Napa Wino","alternateName":["Napa Sommelier","Napa Valley Sommelier","Napa Wine Market"],"url":"https://www.napawino.com/","description":"A free online Napa sommelier and independent Napa Valley visitor guide: 50+ wineries, restaurants, experiences and real estate. Zero paid placements in the wine guide.","inLanguage":"en-US"}
@@ -85,7 +88,7 @@
       <a href="/itineraries.html">Plan a Day</a><a href="/events.html">What's On</a><a href="/real-estate.html">Real Estate</a>
     </nav>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span><i></i><i></i><i></i></span>Menu</button>
-    <a href="/#sommelier" class="btn btn-wine">Ask the Sommelier</a>
+    <a href="/sommelier.html" class="btn btn-wine">Ask the Sommelier</a>
   </div>
   <div class="mnav" id="mnav">
     <h5>Explore</h5>
@@ -181,19 +184,14 @@
     <h2 class="title">Your Napa sommelier, on call</h2>
     <p class="lede">Tell it what you love, in plain English, from anywhere in the world. It filters 50+ estates, orders your stops so you never backtrack on Highway 29, and slips a lunch table in between. No tasting notes about “wet slate” unless you ask for them.</p>
   </div>
-  <div class="somm">
+  <form class="somm somm-launch" action="/sommelier.html" method="get" role="search" aria-label="Ask the Napa sommelier">
     <div class="somm-head"><img src="/logo.svg" alt="">The Suggester · your wino-in-chief</div>
     <div class="somm-body">
-      <div class="thread" id="thread"><p class="display" style="font-style:italic;font-size:21px;text-align:center;color:#756651;padding:18px 0" id="placeholder">“I like bold Cabernets and want a view…”</p></div>
+      <div class="ask" style="margin-top:0"><input name="q" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier" autocomplete="off" enterkeyhint="go" maxlength="400" required><button class="btn btn-gold" type="submit">Ask</button></div>
       <div class="qp" id="quickPrompts"></div>
-      <div id="townCtx"></div>
-      <div class="ask"><input id="askInput" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier"><button class="btn btn-gold" id="askBtn">Ask</button></div>
+      <p class="launch-note">Opens the full sommelier page — tap-to-build your day, then save, share or print it. <a id="savedDay" href="/sommelier.html#itinSection" hidden>Pick up your saved Napa day →</a></p>
     </div>
-  </div>
-</section>
-
-<section class="wrap itin-section" id="itinSection" style="display:none;padding-top:8px;padding-bottom:40px">
-  <div class="itin" id="itinBox"></div>
+  </form>
 </section>
 
 <section class="wrap" id="month" style="padding-top:46px">
@@ -286,7 +284,8 @@
   <a class="btn" href="/real-estate.html">View properties →</a>
 </div></section>
 
-<section class="band">
+<section class="band vbg" style="--vbg-dim:.66">
+  <video class="vbg-v" data-clip="clip-vineyard" muted loop playsinline preload="none" poster="/video/clip-vineyard.jpg" aria-hidden="true" tabindex="-1"></video>
   <blockquote>“Harvest — the crush — runs August to November, when the whole valley smells of fermenting fruit and every cellar door is open late.”</blockquote>
   <cite>The Napa year · 2026 harvest came in early, peaking in September</cite>
   <div style="margin-top:22px"><a class="btn btn-gold" href="/harvest-2026.html">See this year's harvest →</a></div>
@@ -361,7 +360,7 @@
 <section class="wrap faq" id="faq" style="padding-top:52px;padding-bottom:56px">
   <p class="eyebrow">Visitor questions</p>
   <h2 class="title">Napa Valley FAQ</h2>
-  <details><summary>Is there a free Napa sommelier I can ask?</summary><p>Yes — that's what this site is. <a href="/#sommelier">The Suggester</a> is a free AI Napa Valley sommelier. Describe what you like in plain English and it picks from 50+ verified estates, orders the stops so you never backtrack on Highway 29, and adds a lunch table in between. No account, no fee, no paid placements.</p></details>
+  <details><summary>Is there a free Napa sommelier I can ask?</summary><p>Yes — that's what this site is. <a href="/sommelier.html">The Suggester</a> is a free AI Napa Valley sommelier. Describe what you like in plain English and it picks from 50+ verified estates, orders the stops so you never backtrack on Highway 29, and adds a lunch table in between. No account, no fee, no paid placements.</p></details>
   <details><summary>How do I get to Napa Valley?</summary><p>Napa sits about 50 miles (80 km) northeast of San Francisco — roughly 90 minutes by car. The usual airports are SFO, Oakland (OAK) and Sacramento (SMF). There's no passenger rail into the valley, so most visitors drive, hire a car service, or join a tour. Once here, the valley runs on two parallel roads: Highway 29 and the Silverado Trail.</p></details>
   <details><summary>When is the best time to visit Napa Valley?</summary><p>Harvest — “the crush” — runs August through November, peaking September and October. February through April brings the mustard bloom, thin crowds and lower rates. <a href="/articles/best-time-to-visit-napa.html">Full month-by-month guide →</a></p></details>
   <details><summary>Where should I stay in Napa Valley?</summary><p>Napa for range and value, Yountville for walkability and food, St. Helena for the shortest drives to historic wineries, Calistoga for spas and quiet. <a href="/articles/napa-towns-guide.html">Full town-by-town comparison →</a></p></details>
@@ -372,7 +371,7 @@
   <details><summary>Do Napa wineries require reservations?</summary><p>Most are appointment-only, especially weekends — book a week ahead, and months ahead for the icons. A few, like V. Sattui, welcome walk-ins daily.</p></details>
 </section>
 
-<section class="safe"><div class="wrap">
+<section class="safe vbg" style="--vbg-dim:.55"><video class="vbg-v" data-clip="clip-train" muted loop playsinline preload="none" poster="/video/clip-train.jpg" aria-hidden="true" tabindex="-1"></video><div class="wrap">
   <div><p class="eyebrow" style="color:#F2CE87">Safe return</p><h2>Be a wino, not a statistic. Let someone else drive.</h2></div>
   <a class="btn btn-gold" href="https://m.uber.com" target="_blank" rel="noreferrer">Find a driver</a>
 </div></section>
@@ -466,46 +465,8 @@ const geoTip=document.getElementById('geoTip'),townGrid=document.getElementById(
 function enterTown(name){const t=TOWNS[name];if(!t)return;[...townGrid.children].forEach(c=>c.classList.toggle('active',c.dataset.town===name));geoTip.className='geo-tip show';geoTip.innerHTML='<p class="eyebrow">📍 '+esc(name)+'</p><p style="font-size:14.5px;margin-top:7px;color:#4E443A">'+esc(t.tip)+'</p><p style="font-size:12.5px;margin-top:8px;color:#756651">Nearby: '+t.nearby.map(id=>esc((WINERIES.find(w=>w.id===id)||{}).name||'')).filter(Boolean).join(' · ')+' · <a href="'+({"Napa":"/napa.html","Yountville":"/yountville.html","St. Helena":"/st-helena.html","Calistoga":"/calistoga.html"})[name]+'" style="color:#7B2947">Full '+esc(name)+' guide →</a></p>'}
 Object.entries(TOWNS).forEach(([n,t])=>{const c=document.createElement('div');c.className='towncard';c.dataset.town=n;c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Explore '+n);c.style.backgroundImage="url('"+t.img+"')";c.innerHTML='<div class="shade"></div><div class="lbl"><span>'+esc(t.tag)+'</span><b>'+esc(n)+'</b></div>';const P={"Napa":"/napa.html","Yountville":"/yountville.html","St. Helena":"/st-helena.html","Calistoga":"/calistoga.html"};const go=()=>{location.href=P[n]||'/'};c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};townGrid.appendChild(c)});
 document.getElementById('detectBtn').onclick=()=>{if(!navigator.geolocation){alert('Geolocation not supported on this device.');return}navigator.geolocation.getCurrentPosition(p=>{const la=p.coords.latitude,lo=p.coords.longitude;let best=null,bd=1e9;for(const[n,t]of Object.entries(TOWNS)){const d=(t.lat-la)**2+(t.lng-lo)**2;if(d<bd){bd=d;best=n}}enterTown(best);if(Math.sqrt(bd)>0.9){geoTip.innerHTML+='<p style="font-size:11.5px;margin-top:8px;color:#756651">You look far from the valley — showing the nearest zone as a preview.</p>'}},()=>{geoTip.className='geo-tip show';geoTip.innerHTML='<p style="font-size:14.5px">Location access was declined — tap a town above to preview its zone instead.</p>'})};
-const thread=document.getElementById('thread'),input=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),qp=document.getElementById('quickPrompts');
-let history=[],busy=false;
-const TOWN_NAMES={napa:'Napa',yountville:'Yountville','st-helena':'St. Helena',calistoga:'Calistoga'};
-let townCtx=null;
-(function(){const t=new URLSearchParams(location.search).get('town');const name=t&&TOWN_NAMES[t];if(!name)return;townCtx=name;const box=document.getElementById('townCtx');if(!box)return;box.innerHTML='<span class="town-pill">📍 Starting in '+esc(name)+' <button type="button" aria-label="Clear starting town">✕</button></span>';box.querySelector('button').onclick=function(){townCtx=null;box.innerHTML='';const u=new URL(location.href);u.searchParams.delete('town');history_replace(u)};function history_replace(u){try{window.history.replaceState({},'',u)}catch(e){}}})();
-QUICK.forEach(q=>{const b=document.createElement('button');b.className='chip';b.textContent=q;b.onclick=()=>send(q);qp.appendChild(b)});
-askBtn.onclick=()=>send();input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
-const ITIN_KEY='napaItinerary';
-let itinerary=[],itinTip='';
-function loadItinerary(){try{const sp=new URLSearchParams(location.search).get('stops');if(sp){itinerary=sp.split(',').map(id=>WINERIES.find(w=>w.id===id)).filter(Boolean).map(w=>({id:w.id,type:'winery'}))}else{const saved=JSON.parse(localStorage.getItem(ITIN_KEY)||'null');if(saved&&Array.isArray(saved.stops))itinerary=saved.stops;if(saved&&saved.tip)itinTip=saved.tip}}catch(e){}}
-function itemFor(stop){return stop.type==='restaurant'?RESTAURANTS.find(x=>x.id===stop.id):WINERIES.find(w=>w.id===stop.id)}
-function addToItinerary(picks,eats,tip){picks.forEach(w=>{if(!itinerary.some(s=>s.id===w.id&&s.type==='winery'))itinerary.push({id:w.id,type:'winery'})});eats.forEach(e=>{if(!itinerary.some(s=>s.id===e.id&&s.type==='restaurant'))itinerary.push({id:e.id,type:'restaurant'})});if(tip)itinTip=tip;renderItin()}
-function removeStop(id,type){itinerary=itinerary.filter(s=>!(s.id===id&&s.type===type));renderItin()}
-function itinMsgShow(t){const m=document.getElementById('itinMsg');if(m){m.textContent=t;setTimeout(()=>{if(m)m.textContent=''},4000)}}
-function saveItin(){try{localStorage.setItem(ITIN_KEY,JSON.stringify({stops:itinerary,tip:itinTip}));itinMsgShow('Saved on this device.')}catch(e){itinMsgShow('Could not save — your browser may be blocking storage.')}}
-function shareItin(){const u=new URL(location.href);u.searchParams.set('stops',itinerary.filter(s=>s.type==='winery').map(s=>s.id).join(','));const url=u.toString();if(navigator.share){navigator.share({title:'My Napa Valley day',url}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>itinMsgShow('Link copied!')).catch(()=>itinMsgShow(url))}else itinMsgShow(url)}
-function renderItin(){const box=document.getElementById('itinBox'),sec=document.getElementById('itinSection');if(!itinerary.length){sec.style.display='none';box.innerHTML='';return}sec.style.display='';let rows=itinerary.map(s=>{const it=itemFor(s);if(!it)return '';const label=s.type==='restaurant'?('🍽 <b>'+esc(it.name)+'</b> — '+esc(it.town)):('🍷 <b>'+esc(it.name)+'</b> — '+esc(it.town));return '<div class="itin-row"><span class="itin-label">'+label+'</span><button type="button" aria-label="Remove stop" data-id="'+esc(s.id)+'" data-type="'+s.type+'">✕</button></div>'}).join('');box.innerHTML='<h3>Your Napa day so far</h3><p class="itin-note">Stops in the order the sommelier suggested them. Remove anything that doesn\'t fit, then save, share or print.</p>'+rows+(itinTip?'<p class="itin-tip">🚗 '+esc(itinTip)+' <em>— an estimate from the sommelier, not live traffic.</em></p>':'')+'<div class="itin-actions"><button type="button" id="itinSave">💾 Save</button><button type="button" id="itinShare">🔗 Share link</button><button type="button" id="itinPrint">🖨️ Print</button><button type="button" id="itinClear">Clear</button></div><p class="itin-msg" id="itinMsg"></p>';box.querySelectorAll('.itin-row button').forEach(b=>b.onclick=()=>removeStop(b.dataset.id,b.dataset.type));document.getElementById('itinSave').onclick=saveItin;document.getElementById('itinShare').onclick=shareItin;document.getElementById('itinPrint').onclick=()=>window.print();document.getElementById('itinClear').onclick=()=>{itinerary=[];itinTip='';try{localStorage.removeItem(ITIN_KEY)}catch(e){}renderItin()}}
-loadItinerary();renderItin();
-async function send(text){const q=(text??input.value).trim();if(!q||busy)return;busy=true;input.value='';const ph=document.getElementById('placeholder');if(ph)ph.remove();
- thread.insertAdjacentHTML('beforeend','<div class="msg-u">'+esc(q)+'</div>');
- const wait=document.createElement('p');wait.className='msg-s display';wait.style.fontStyle='italic';wait.style.color='#756651';wait.textContent='Decanting a recommendation…';thread.appendChild(wait);thread.scrollTop=thread.scrollHeight;
- const sendContent=(townCtx&&history.length===0)?('Starting in '+townCtx+'. '+q):q;
- history.push({role:'user',content:sendContent});
- try{
-  const r=await fetch('/api/sommelier',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
-  const res=await r.json();wait.remove();
-  if(!r.ok){thread.insertAdjacentHTML('beforeend','<div class="msg-s">The cellar door stuck for a moment — please try again.</div>');history.pop();}
-  else{
-   const picks=(res.winery_ids||[]).map(id=>WINERIES.find(w=>w.id===id)).filter(Boolean);
-   const eats=(res.restaurant_ids||[]).map(id=>RESTAURANTS.find(x=>x.id===id)).filter(Boolean);
-   let h='<div class="msg-s">'+esc(res.message||'');
-   if(picks.length)h+='<div class="picks">'+picks.map(w=>cardHTML(w)).join('')+'</div>';
-   eats.forEach(e2=>{h+='<p class="eat"><b>🍽 '+esc(e2.name)+'</b> — '+esc(e2.town)+' · '+esc(e2.note)+'</p>'});
-   if(res.route_tip)h+='<p class="route">🚗 '+esc(res.route_tip)+'</p>';
-   h+='</div>';thread.insertAdjacentHTML('beforeend',h);
-   if(picks.length||eats.length)addToItinerary(picks,eats,res.route_tip);
-   history.push({role:'assistant',content:JSON.stringify(res)});
-  }
- }catch(e){wait.remove();thread.insertAdjacentHTML('beforeend','<div class="msg-s">The cellar door stuck for a moment — please try again.</div>');history.pop();}
- thread.scrollTop=thread.scrollHeight;busy=false;}
+QUICK.forEach(q=>{const l=document.createElement('a');l.className='chip';l.href='/sommelier.html?q='+encodeURIComponent(q);l.textContent=q;document.getElementById('quickPrompts').appendChild(l)});
+try{const sv=JSON.parse(localStorage.getItem('napaItinerary')||'null');if(sv&&Array.isArray(sv.stops)&&sv.stops.length)document.getElementById('savedDay').hidden=false}catch(e){}
 </script>
 <script>
 (function(){var ml=document.getElementById('monthLabel');if(ml)ml.textContent=new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});})();
@@ -534,5 +495,6 @@ window.addEventListener('load', function(){
 });
 })();
 </script>
+<script src="/video/vbg.js" defer></script>
 </body>
 </html>

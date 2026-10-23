@@ -10,25 +10,54 @@
 <meta property="og:title" content="Napa Sommelier — Free AI Wine Tasting Planner for Napa Valley">
 <meta property="og:description" content="Describe what you like and the free Napa sommelier builds your tasting day — wineries, order, and lunch — from 50+ verified estates.">
 <meta property="og:url" content="https://www.napawino.com/sommelier.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1571113606406-f3ca1c36e7e7?q=80&w=1200&auto=format&fit=crop">
+<meta property="og:image" content="https://www.napawino.com/video/clip-pour.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
 <style>
-.hero{background-image:linear-gradient(rgba(46,20,12,.40),rgba(46,20,12,.30) 45%,rgba(46,20,12,.48)),url('https://images.unsplash.com/photo-1571113606406-f3ca1c36e7e7?q=88&w=2600&auto=format&fit=crop');animation:nwzoom 11s ease-in-out infinite alternate;background-size:cover;background-position:center}
-@keyframes nwzoom{from{background-size:100%}to{background-size:142%}}
-@media(prefers-reduced-motion:reduce){.hero{animation:none}}
+/* v6.16 — Sommelier as a standalone app page */
+.hero.shero{background-image:linear-gradient(rgba(46,20,12,.35),rgba(46,20,12,.45)),url('/video/clip-pour.jpg');background-size:cover;background-position:center;padding:64px 22px 132px}
+.shero h1{font-size:clamp(40px,6vw,64px)}
+.shero .sub{max-width:600px}
+.shero .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:20px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#FFF3DC;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.shero .trust b{color:#FBDFA4;font-weight:700}
+.shero .trust span:before{content:'◆';color:#D9A54A;margin-right:8px;font-size:9px;vertical-align:2px}
+.app{position:relative;z-index:5;max-width:1120px;margin:-96px auto 0;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.app .somm{margin-top:0;box-shadow:0 18px 50px rgba(40,15,8,.22)}
+.app .somm-head{justify-content:space-between}
+.app .somm-head .live{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;letter-spacing:.14em;color:#FBDFA4}
+.app .somm-head .live i{width:7px;height:7px;border-radius:50%;background:#8FD18F;box-shadow:0 0 0 3px rgba(143,209,143,.25)}
+.app .thread{max-height:min(62vh,620px)}
+.app .thread:not(:has(.empty)){min-height:280px}
+.app .empty{text-align:center;padding:26px 8px 6px}
+.app .empty .display{font-style:italic;font-size:23px;color:#7B2947}
+.app .empty p.hint{font-size:13px;color:#756651;margin-top:6px}
+.app .ask{position:sticky;bottom:0;background:var(--paper);padding-top:10px}
+.app .ask input{font-size:16px;padding:15px 16px}
+.app .ask .btn{padding-left:26px;padding-right:26px}
+.builder{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 18px 50px rgba(40,15,8,.16);overflow:hidden}
+.builder h2{background:#2E1711;color:#FBDFA4;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:13px 18px;margin:0;font-family:inherit}
+.builder .bbody{padding:16px 18px 18px}
+.builder fieldset{border:none;padding:0;margin:0 0 14px}
+.builder legend{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#756651;font-weight:600;margin-bottom:8px}
+.builder .opts{display:flex;flex-wrap:wrap;gap:6px}
+.builder .chip{padding:6px 12px;font-size:12.5px}
+.builder .chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#FFF6E6}
+.builder .go{width:100%;margin-top:4px}
+.builder .preview{font-size:12.5px;color:#5A4A38;font-style:italic;margin-top:10px;min-height:2.6em;line-height:1.45}
 .howgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
 .howcard{background:#fff;border:1px solid var(--line);border-radius:4px;padding:20px 20px 22px}
 .howcard .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--wine);color:#FBDFA4;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:16px;margin-bottom:10px}
 .howcard h3{font-size:17px;margin-bottom:6px;color:#2E1711}
 .howcard p{font-size:13.8px;color:#5A4A38;line-height:1.5}
-.sample{background:#fff;border:1px solid var(--line);border-radius:4px;padding:22px 24px;margin-top:16px}
+.sample{background:#fff;border:1px solid var(--line);border-radius:4px;padding:22px 24px;margin-top:16px;cursor:pointer;transition:border-color .2s}
+.sample:hover{border-color:var(--brand)}
 .sample .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:#7B2947;margin-bottom:8px}
+.sample .q:after{content:'  Ask this →';font-family:'Jost',sans-serif;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9A7A3A;font-weight:600}
 .sample .a{font-size:14px;color:#4E443A;line-height:1.6}
-.trustrow{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px;font-size:13.3px;color:#5A4A2E}
-.trustrow span b{color:var(--wine)}
+@media(max-width:920px){.app{grid-template-columns:1fr;margin-top:-80px}.hero.shero{padding-bottom:112px}}
+@media(max-width:560px){.app{padding:0 10px}.app .somm-body{padding:16px}.app .somm-head .live,.app .somm-head .wic{display:none}.app .thread:not(:has(.empty)){min-height:200px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"The Suggester — Napa Sommelier","alternateName":["Napa Sommelier","Napa AI Sommelier","Napa Wine Tasting Planner"],"url":"https://www.napawino.com/sommelier.html","applicationCategory":"TravelApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"A free AI sommelier for Napa Valley. Describe what you like in plain English and it recommends wineries from a 50+ estate database, sequences the stops geographically so you never backtrack on Highway 29, and suggests a lunch stop between tastings.","provider":{"@type":"Organization","name":"Napa Wino","url":"https://www.napawino.com/"},"featureList":["Personalized winery recommendations from 50+ verified Napa Valley estates","Geographic route sequencing to avoid backtracking on Highway 29 or the Silverado Trail","Restaurant suggestions placed between tastings","No account or sign-up required","Zero paid placements — recommendations are editorially independent"]}
@@ -51,7 +80,7 @@
 {"@type":"Question","name":"Does the sommelier get paid to recommend certain wineries?","acceptedAnswer":{"@type":"Answer","text":"No. Napa Wino's wine guide, including the sommelier's recommendations, accepts zero paid placements. Real-estate listings elsewhere on the site are funded separately and never influence which wineries the sommelier suggests."}}
 ]}
 </script>
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1571113606406-f3ca1c36e7e7?q=88&w=2600&auto=format&fit=crop" fetchpriority="high">
+<link rel="preload" as="image" href="/video/clip-pour.jpg" fetchpriority="high">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,31 +98,45 @@
   </div>
 </div></header>
 
-<section id="main" class="hero" style="padding:70px 22px 60px">
+<section id="main" class="hero shero vbg" style="--vbg-dim:.6"><video class="vbg-v" data-clip="clip-pour" muted loop playsinline preload="none" poster="/video/clip-pour.jpg" aria-hidden="true" tabindex="-1"></video>
   <p class="eyebrow">The Suggester · free Napa sommelier</p>
   <h1>Ask the Napa Sommelier</h1>
-  <p class="sub">A free AI wine tasting planner for Napa Valley. Describe what you like in plain English — a grape, a mood, a view — and it matches you against 50+ verified estates, orders the stops so you never backtrack on Highway 29, and slips a lunch table in between. No account. No fee. No paid placements, ever.</p>
+  <p class="sub">Tell it what you love in plain English. Get two or three wineries in driving order — no backtracking on Highway 29 — with a lunch table slotted in between.</p>
+  <div class="trust"><span><b>50+</b> verified estates</span><span><b>16</b> AVAs</span><span><b>$0</b> · no account</span><span><b>Zero</b> paid placements</span></div>
 </section>
 
-<section class="wrap" style="padding-top:44px;padding-bottom:10px" id="ask">
+<div class="app" id="ask">
   <div class="somm">
-    <div class="somm-head"><img src="/logo.svg" alt="">The Suggester · your wino-in-chief</div>
+    <div class="somm-head"><span style="display:inline-flex;align-items:center;gap:9px"><img src="/logo.svg" alt=""><span>The Suggester<span class="wic"> · your wino-in-chief</span></span></span><span class="live"><i></i>On call</span></div>
     <div class="somm-body">
-      <div class="thread" id="thread"><p class="display" style="font-style:italic;font-size:21px;text-align:center;color:#756651;padding:18px 0" id="placeholder">“I like bold Cabernets and want a view…”</p></div>
+      <div class="thread" id="thread"><div class="empty" id="placeholder"><p class="display">“I like bold Cabernets and want a view…”</p><p class="hint">Type anything — or tap a starter below, or build it with taps on the right.</p></div></div>
       <div class="qp" id="quickPrompts"></div>
       <div id="townCtx"></div>
-      <div class="ask"><input id="askInput" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier"><button class="btn btn-gold" id="askBtn">Ask</button></div>
+      <div class="ask"><input id="askInput" placeholder="Describe your perfect day in the valley…" aria-label="Ask the Napa sommelier" autocomplete="off" enterkeyhint="send"><button class="btn btn-gold" id="askBtn">Ask</button></div>
     </div>
   </div>
-  <div class="trustrow">
-    <span><b>50+</b> verified estates</span>
-    <span><b>16</b> Napa Valley AVAs covered</span>
-    <span><b>$0</b> cost, no account</span>
-    <span><b>Zero</b> paid placements in the wine guide</span>
-  </div>
-</section>
+  <aside class="builder" aria-labelledby="bTitle">
+    <h2 id="bTitle">Or build your day with taps</h2>
+    <div class="bbody">
+      <fieldset><legend>Where</legend><div class="opts" data-group="where" data-single="1">
+        <button type="button" class="chip" data-v="">Anywhere</button><button type="button" class="chip" data-v="Napa">Napa</button><button type="button" class="chip" data-v="Yountville">Yountville</button><button type="button" class="chip" data-v="St. Helena">St. Helena</button><button type="button" class="chip" data-v="Calistoga">Calistoga</button><button type="button" class="chip" data-v="the mountains">Up a mountain</button>
+      </div></fieldset>
+      <fieldset><legend>Into</legend><div class="opts" data-group="into">
+        <button type="button" class="chip" data-v="bold Cabernet">Bold Cabernet</button><button type="button" class="chip" data-v="sparkling wine">Bubbles</button><button type="button" class="chip" data-v="big views">Big views</button><button type="button" class="chip" data-v="cave tours">Cave tours</button><button type="button" class="chip" data-v="castles and history">Castles &amp; history</button><button type="button" class="chip" data-v="icon and cult estates">Icons &amp; cult</button><button type="button" class="chip" data-v="small family-run wineries">Family-run</button><button type="button" class="chip" data-v="modern architecture">Modern design</button>
+      </div></fieldset>
+      <fieldset><legend>The day</legend><div class="opts" data-group="pace" data-single="1">
+        <button type="button" class="chip" data-v="2 relaxed stops">2 relaxed stops</button><button type="button" class="chip" data-v="3 stops with lunch in between">3 stops + lunch</button><button type="button" class="chip" data-v="a walkable day with no driving">No driving</button>
+      </div></fieldset>
+      <fieldset><legend>Who's coming</legend><div class="opts" data-group="who" data-single="1">
+        <button type="button" class="chip" data-v="it's our first trip to Napa">First-timers</button><button type="button" class="chip" data-v="it's a date day for two">Date day</button><button type="button" class="chip" data-v="we're a group of friends">Group</button><button type="button" class="chip" data-v="we're bringing our dog">With the dog</button>
+      </div></fieldset>
+      <button type="button" class="btn btn-wine go" id="buildGo" disabled>Build my day →</button>
+      <p class="preview" id="buildPreview" aria-live="polite">Pick a few — I'll write the request for you.</p>
+    </div>
+  </aside>
+</div>
 
-<section class="wrap itin-section" id="itinSection" style="display:none;padding-top:8px;padding-bottom:30px">
+<section class="wrap itin-section" id="itinSection" style="display:none;padding-top:22px;padding-bottom:30px">
   <div class="itin" id="itinBox"></div>
 </section>
 
@@ -111,9 +154,9 @@
 <section class="wrap" style="padding-top:52px;padding-bottom:10px">
   <p class="eyebrow">What it sounds like</p>
   <h2 class="title">Three real prompts, and the kind of answer you'll get</h2>
-  <div class="sample"><p class="q">“I like bold Cabernets and want a view.”</p><p class="a">Expect estates on Pritchard Hill, Howell Mountain or Diamond Mountain District, where elevation gives both the structure in the glass and the sightline — ordered so you're not driving the mountain roads twice in one afternoon.</p></div>
-  <div class="sample"><p class="q">"First trip — plan me 3 stops with a lunch between."</p><p class="a">A beginner-friendly route: one approachable, well-known estate to start, one slightly further afield, a lunch table slotted between stops two and three, and a third stop that doesn't require backtracking to reach.</p></div>
-  <div class="sample"><p class="q">"A day in Napa with no driving."</p><p class="a">Walkable picks concentrated in one town — typically downtown Napa or Yountville — so the whole day works on foot or with one short rideshare, with a restaurant in the same few blocks.</p></div>
+  <div class="sample" role="button" tabindex="0"><p class="q">“I like bold Cabernets and want a view.”</p><p class="a">Expect estates on Pritchard Hill, Howell Mountain or Diamond Mountain District, where elevation gives both the structure in the glass and the sightline — ordered so you're not driving the mountain roads twice in one afternoon.</p></div>
+  <div class="sample" role="button" tabindex="0"><p class="q">"First trip — plan me 3 stops with a lunch between."</p><p class="a">A beginner-friendly route: one approachable, well-known estate to start, one slightly further afield, a lunch table slotted between stops two and three, and a third stop that doesn't require backtracking to reach.</p></div>
+  <div class="sample" role="button" tabindex="0"><p class="q">"A day in Napa with no driving."</p><p class="a">Walkable picks concentrated in one town — typically downtown Napa or Yountville — so the whole day works on foot or with one short rideshare, with a restaurant in the same few blocks.</p></div>
 </section>
 
 <section class="wrap faq" style="padding-top:52px;padding-bottom:16px">
@@ -203,6 +246,68 @@ function checkBg(el){
 window.addEventListener('load', function(){ document.querySelectorAll('.hero, .gthumb').forEach(checkBg); });
 })();
 </script>
-<footer><div class="base"><img src="/logo.svg" alt="Napa Wino"><br><a href="/">← Back to Napa Wino</a> · <a href="/#guides">All guides</a> · <a href="/real-estate.html">Real Estate</a> · © 2026</div></footer>
+<footer>
+  <div class="fgrid">
+    <div><img src="/logo.svg" alt="Napa Wino"><p style="font-size:12.5px;max-width:260px">Your free Napa sommelier and the unstuffy Napa Valley guide. Zero paid placements in the wine and dining guide.</p></div>
+    <div><h4>Plan the trip</h4><a href="/#month">This Month in Napa</a><a href="/articles/first-time-napa-guide.html">First Time in Napa?</a><a href="/articles/best-time-to-visit-napa.html">Best Time to Visit</a><a href="/articles/napa-towns-guide.html">Where to Stay</a><a href="/articles/3-day-napa-itinerary.html">The 3-Day Itinerary</a><a href="/dog-friendly.html">Dog-Friendly Napa</a><a href="/things-to-do.html">Beyond Wine: Things to Do</a></div>
+    <div><h4>Know the valley</h4><a href="/articles/napa-avas-explained.html">The 16 AVAs, Explained</a><a href="/articles/best-napa-wineries.html">Best Wineries by Vibe</a><a href="/articles/napa-wine-train-guide.html">The Wine Train</a><a href="/wineries.html">Winery Directory</a></div>
+    <div><h4>More</h4><a href="/about.html">What Is Napa Wino?</a><a href="/real-estate.html">Napa Real Estate</a><a href="/articles/napa-real-estate-guide.html">Buying Property Guide</a><a href="/sommelier.html">Ask the Napa Sommelier</a><a href="/#faq">Napa Valley FAQ</a><a href="mailto:corrections@napawino.com">Report a Correction</a></div>
+  </div>
+  <div class="base">
+    <div class="slogan">Serious about the valley. Not too serious about ourselves.</div>
+    <b style="font-family:'Cormorant Garamond',serif;font-size:17px;color:#7B2947">Napa Wino</b> · Written by <a href="/about.html" style="color:#7B2947">the Napa Wino editors</a> · Editorially independent · © 2026
+    <div class="credits">Winery marks belong to their respective estates and link to their official sites.<br>Photography via Unsplash — Daniel Salgado, Lisha Riabinina, Ugi K., Bel R, Jim Harris, Lumin Osity, Oleksandr Gamaniuk, Zetong Li, Janet Wixom.</div>
+  </div>
+</footer>
+<script>
+/* v6.16 — tap builder, clickable samples, ?q= hand-off from the homepage */
+(function(){
+  var sel={where:'',into:[],pace:'',who:''};
+  var go=document.getElementById('buildGo'),pv=document.getElementById('buildPreview');
+  function compose(){
+    var parts=[];
+    if(sel.pace)parts.push('Plan me '+sel.pace+'.');else parts.push('Plan my Napa day.');
+    if(sel.into.length){var l=sel.into.slice();var last=l.pop();parts.push("I'm into "+(l.length?l.join(', ')+' and '+last:last)+'.');}
+    if(sel.where)parts.push(sel.where==='the mountains'?'Take me up into the mountain estates.':'Starting in '+sel.where+'.');
+    if(sel.who)parts.push(sel.who.charAt(0).toUpperCase()+sel.who.slice(1)+'.');
+    return parts.join(' ');
+  }
+  function refresh(){
+    var any=sel.where||sel.into.length||sel.pace||sel.who;
+    go.disabled=!any;
+    pv.textContent=any?'“'+compose()+'”':"Pick a few — I'll write the request for you.";
+  }
+  document.querySelectorAll('.builder .opts').forEach(function(g){
+    var key=g.getAttribute('data-group'),single=g.hasAttribute('data-single');
+    g.querySelectorAll('.chip').forEach(function(b){
+      b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){
+        var v=b.getAttribute('data-v'),on=b.getAttribute('aria-pressed')==='true';
+        if(single){g.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false')});
+          if(!on){b.setAttribute('aria-pressed','true');sel[key]=v}else sel[key]='';}
+        else{b.setAttribute('aria-pressed',on?'false':'true');
+          sel[key]=on?sel[key].filter(function(x){return x!==v}):sel[key].concat(v);}
+        refresh();
+      });
+    });
+  });
+  go.addEventListener('click',function(){
+    if(sel.where&&typeof townCtx!=='undefined')townCtx=null; // town is already in the sentence
+    send(compose());
+    if(window.matchMedia('(max-width:920px)').matches)document.getElementById('thread').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  document.querySelectorAll('.sample').forEach(function(c){
+    function ask(){var q=c.querySelector('.q').textContent.replace(/^[“"]|[”"]$/g,'').trim();send(q);document.getElementById('ask').scrollIntoView({behavior:'smooth'});}
+    c.addEventListener('click',ask);
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ask()}});
+  });
+  var q=new URLSearchParams(location.search).get('q');
+  if(q&&q.trim()){
+    send(q.trim().slice(0,400));
+    try{var u=new URL(location.href);u.searchParams.delete('q');window.history.replaceState({},'',u)}catch(e){}
+  }
+})();
+</script>
+<script src="/video/vbg.js" defer></script>
 </body>
 </html>

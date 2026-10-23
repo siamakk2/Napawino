@@ -35,7 +35,27 @@ const VIDEO_ASSETS = [
   // Homepage hero background loop (muted, 10s) + first-frame poster
   'video/napa-hero.mp4',
   'video/napa-hero.webm',
-  'video/napa-hero-poster.jpg'
+  'video/napa-hero-poster.jpg',
+  // Per-scene ambient loops for section heroes + their loader (v6.16)
+  'video/clip-pour.mp4',
+  'video/clip-pour.webm',
+  'video/clip-pour.jpg',
+  'video/clip-vineyard.mp4',
+  'video/clip-vineyard.webm',
+  'video/clip-vineyard.jpg',
+  'video/clip-train.mp4',
+  'video/clip-train.webm',
+  'video/clip-train.jpg',
+  'video/clip-balloons.mp4',
+  'video/clip-balloons.webm',
+  'video/clip-balloons.jpg',
+  'video/clip-dinner.mp4',
+  'video/clip-dinner.webm',
+  'video/clip-dinner.jpg',
+  'video/clip-toast.mp4',
+  'video/clip-toast.webm',
+  'video/clip-toast.jpg',
+  'video/vbg.js'
 ];
 
 // HTML pages pinned as local source files under carried/ — same pattern as
