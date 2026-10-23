@@ -246,10 +246,19 @@ body{background-image:linear-gradient(rgba(251,247,239,.87),rgba(247,239,226,.89
 .hero,.band,.safe{animation:nwzoom 11s ease-in-out infinite alternate}
 @keyframes nwzoom{from{background-size:100%}to{background-size:142%}}
 
-/* v6.13 — homepage brand video card (9:16), near the top. */
-.video-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 10px 30px rgba(60,30,15,.1);padding:18px;max-width:340px;margin:0 auto;text-align:center;overflow:hidden}
+/* v6.14 — homepage "watch" feature band: copy + video side by side,
+   replacing the earlier lone centered video card (looked unfinished,
+   too much dead space either side of it on desktop). */
+.watch-feature{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-top:44px;padding-bottom:44px}
+.watch-copy .title{margin-top:6px}
+.watch-copy .lede{margin-top:10px}
+.watch-list{list-style:none;margin:20px 0 0;display:flex;flex-direction:column;gap:10px}
+.watch-list li{font-size:14.5px;color:var(--body);padding-left:22px;position:relative}
+.watch-list li:before{content:'✓';position:absolute;left:0;top:0;color:var(--gold-text);font-weight:700}
+.watch-list li b{color:var(--ink);font-weight:600}
+.video-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 10px 30px rgba(60,30,15,.1);padding:14px;max-width:300px;margin:0 auto;text-align:center;overflow:hidden}
 .video-card video{width:100%;max-width:100%;max-height:70vh;aspect-ratio:9/16;object-fit:cover;border-radius:3px;background:#1C0608;display:block}
-.video-caption{font-size:13.5px;color:var(--body);margin-top:12px;line-height:1.5}
 .video-transcript{margin-top:10px;text-align:left}
 .video-transcript summary{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#756651;font-weight:600;cursor:pointer}
 .video-transcript p{font-size:13px;color:var(--body);margin-top:8px;line-height:1.6}
+@media(max-width:860px){.watch-feature{grid-template-columns:1fr;gap:28px;text-align:center}.watch-list{text-align:left;max-width:340px;margin-left:auto;margin-right:auto}.watch-copy .hero-cta{justify-content:center!important}}
