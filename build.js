@@ -31,7 +31,11 @@ const CARRY = [
 const VIDEO_ASSETS = [
   'video/napa-wino.mp4',
   'video/napa-wino-poster.jpg',
-  'video/napa-wino.vtt'
+  'video/napa-wino.vtt',
+  // Homepage hero background loop (muted, 10s) + first-frame poster
+  'video/napa-hero.mp4',
+  'video/napa-hero.webm',
+  'video/napa-hero-poster.jpg'
 ];
 
 // HTML pages pinned as local source files under carried/ — same pattern as
