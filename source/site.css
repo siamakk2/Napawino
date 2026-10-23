@@ -245,3 +245,11 @@ body{background-image:linear-gradient(rgba(251,247,239,.87),rgba(247,239,226,.89
    .banner zoom already used on every article/town page. */
 .hero,.band,.safe{animation:nwzoom 11s ease-in-out infinite alternate}
 @keyframes nwzoom{from{background-size:100%}to{background-size:142%}}
+
+/* v6.13 — homepage brand video card (9:16), near the top. */
+.video-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 10px 30px rgba(60,30,15,.1);padding:18px;max-width:340px;margin:0 auto;text-align:center}
+.video-card video{width:100%;aspect-ratio:9/16;border-radius:3px;background:#1C0608;display:block}
+.video-caption{font-size:13.5px;color:var(--body);margin-top:12px;line-height:1.5}
+.video-transcript{margin-top:10px;text-align:left}
+.video-transcript summary{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#756651;font-weight:600;cursor:pointer}
+.video-transcript p{font-size:13px;color:var(--body);margin-top:8px;line-height:1.6}

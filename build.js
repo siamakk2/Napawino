@@ -26,6 +26,14 @@ const CARRY = [
   'sitemap.xml'
 ];
 
+// Homepage brand video + poster + captions — pinned local source files,
+// same pattern as logo.svg.
+const VIDEO_ASSETS = [
+  'video/napa-wino.mp4',
+  'video/napa-wino-poster.jpg',
+  'video/napa-wino.vtt'
+];
+
 // HTML pages pinned as local source files under carried/ — same pattern as
 // index.html/site.css/article.css. Fixes the bug class where editing these
 // pages' HTML had no effect because the old CARRY array re-fetched them
@@ -132,6 +140,13 @@ function writeOut(rel, buf) {
   live['logo.svg'] = fs.readFileSync('source/logo.svg');
   console.log(`loaded logo.svg from source/ (${live['logo.svg'].length} B)`);
 
+  for (const rel of VIDEO_ASSETS) {
+    const p = path.join('source', rel);
+    if (!fs.existsSync(p)) die(`missing source/${rel}`);
+    live[rel] = fs.readFileSync(p);
+    console.log(`loaded ${rel} from source/ (${live[rel].length} B)`);
+  }
+
   // 2b. Pinned HTML pages — local source, not a live fetch.
   for (const rel of CARRIED_PAGES) {
     const p = path.join('carried', rel);
@@ -179,7 +194,7 @@ function writeOut(rel, buf) {
     console.log(`added ${p}`);
   }
 
-  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css', 'logo.svg']).concat(CARRIED_PAGES).concat(NEW_PAGES)).size;
+  const total = new Set(CARRY.concat(['data.js', 'index.html', 'site.css', 'article.css', 'logo.svg']).concat(VIDEO_ASSETS).concat(CARRIED_PAGES).concat(NEW_PAGES)).size;
   const written = [];
   (function walk(d) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
