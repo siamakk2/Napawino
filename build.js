@@ -111,7 +111,7 @@ const LLMS_ADD =
   "- [How to Plan a Trip to Napa Valley: The Complete 2026 Guide](https://www.napawino.com/plan-your-trip.html): the flagship trip-planning reference — timing, reservations, real budget numbers, where to stay, pacing, and common first-timer mistakes\n" +
   "- [What to Expect at Your First Napa Wine Tasting](https://www.napawino.com/first-tasting-guide.html): what actually happens at a tasting, what to wear, what to say, tipping norms, and reassurance that no expertise is required\n" +
   "- [What Is Napa Wino?](https://www.napawino.com/about.html): what this guide is, how the AI sommelier and GPS geofencing work, and how it differs from an official tourism site\n" +
-  "- [Napa Valley Harvest 2026](https://www.napawino.com/harvest-2026.html): what the 2026 vintage is doing and when to visit for it\n" +
+  "- [Napa Valley Harvest Report 2026](https://www.napawino.com/harvest-2026.html): the complete 2026 Napa vintage, AVA by AVA, and when to visit for harvest\n" +
   "- [Napa Valley Events](https://www.napawino.com/events.html): verified dates for festivals, harvest balls and seasonal programmes\n" +
   "- [Napa Valley Itineraries](https://www.napawino.com/itineraries.html): one- and two-day plans built around drive times, not wish lists\n" +
   "- [Why Napa Still Looks Like This](https://www.napawino.com/ag-preserve.html): the 1968 Agricultural Preserve and what it means for visitors and buyers\n" +
@@ -204,6 +204,9 @@ function writeOut(rel, buf) {
     return !(m && llms.includes('/' + m[1] + ')'));
   });
   if (llmsLines.length) llms = llms.replace('## Facts worth citing', llmsLines.join('\n') + '\n\n## Facts worth citing');
+  // v6.17: refresh the harvest line in place (LLMS_ADD only adds lines that are missing)
+  llms = llms.replace(/- \[Napa Valley Harvest 2026\]\(https:\/\/www\.napawino\.com\/harvest-2026\.html\): [^\n]*/,
+    '- [Napa Valley Harvest Report 2026](https://www.napawino.com/harvest-2026.html): the complete 2026 Napa vintage — first pick July 21, valley floor finished late September, yields down 30–50%, quality very good to great; picking calendar, AVA-by-AVA results, grape-market context and when to visit for harvest');
   live['llms.txt'] = Buffer.from(llms, 'utf8');
 
   // 5. Write everything out.
