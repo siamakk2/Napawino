@@ -88,3 +88,8 @@ main{padding-top:30px}
    hero's ::before gradient was painting over the link and flex stretch made it a
    full-width bar. Lift it above the gradient and keep it a centered pill. */
 .banner > a:not(.bcta){position:relative;z-index:2;align-self:center;margin-bottom:24px}
+
+/* v6.18 — never show the browser's own play overlay on background loops (iOS Low Power Mode) */
+.hero-video::-webkit-media-controls,.vbg-v::-webkit-media-controls,
+.hero-video::-webkit-media-controls-start-playback-button,.vbg-v::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-overlay-play-button,.vbg-v::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none;opacity:0}

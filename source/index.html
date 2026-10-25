@@ -113,11 +113,15 @@
   <script>
   (function(){
     var v=document.getElementById('heroVideo'),b=document.getElementById('heroVidToggle');
-    var c=navigator.connection||{};
-    var still=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||c.saveData;
+    var userPaused=false;
     function set(p){b.textContent=p?'▶':'❚❚';b.setAttribute('aria-label',p?'Play background video':'Pause background video');}
-    if(still){v.removeAttribute('autoplay');v.pause();set(true);}
-    b.addEventListener('click',function(){if(v.paused){v.play();set(false);}else{v.pause();set(true);}});
+    function go(){if(userPaused)return;var p=v.play();if(p&&p.catch)p.catch(function(){});}
+    // v6.18: always autoplay; if the browser refused (iOS Low Power Mode), retry on first interaction
+    v.addEventListener('playing',function(){set(false);});
+    v.addEventListener('pause',function(){if(!v.ended)set(true);});
+    go();
+    ['touchstart','pointerdown','keydown','scroll'].forEach(function(ev){window.addEventListener(ev,function h(){if(v.paused)go();window.removeEventListener(ev,h);},{passive:true});});
+    b.addEventListener('click',function(){if(v.paused){userPaused=false;go();set(false);}else{userPaused=true;v.pause();set(true);}});
   })();
   </script>
   <img class="mark" src="/logo.svg" alt="">
